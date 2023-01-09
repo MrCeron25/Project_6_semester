@@ -2,8 +2,64 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Project"
-             StartupUri="Views/Windows/MainWindow.xaml">
+             StartupUri="..\Views\Windows\MainWindow.xaml">
     <Application.Resources>
-         
+
+        <Color x:Key="MainText">#37474f</Color>
+        <Color x:Key="AlternateText">#78909c</Color>
+
+        <Style x:Key="GridTemplate" TargetType="Grid">
+            <Setter Property="Background" Value="White"/>
+        </Style>
+
+        <Style x:Key="ButtonTemplate" TargetType="Button">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Background" Value="#FFFF9C1A"/>
+        </Style>
+
+        <Style x:Key="MainTextBlockTemplate" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="Foreground" Value="#37474f"/>
+        </Style>
+
+        <Style x:Key="AlternateTextBlockTemplate" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="Foreground" Value="#78909c"/>
+        </Style>
+
+        <Style x:Key="MainTextBoxTemplate" TargetType="TextBox">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="Foreground" Value="#37474f"/>
+        </Style>
+
+        <Style x:Key="MainPasswordBoxTemplate" TargetType="PasswordBox">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="Foreground" Value="#37474f"/>
+        </Style>
+
+        <Style x:Key="MenuTemplate" TargetType="Menu">
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+        </Style>
+
+        <ControlTemplate x:Key="MenuControlTemplate">
+            <Menu Style="{StaticResource MenuTemplate}">
+                <MenuItem Header="Меню">
+                    <MenuItem Header="Вход" />
+                    <Separator />
+                    <MenuItem Header="Выход" />
+                </MenuItem>
+            </Menu>
+        </ControlTemplate>
+
     </Application.Resources>
 </Application>

@@ -15,7 +15,8 @@
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
-    <Grid>
-
+    <Grid Style="{StaticResource GridTemplate}">
+        <Frame NavigationUIVisibility="Hidden"
+               x:Name="MainFrame"/>
     </Grid>
 </Window>

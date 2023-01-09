@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d3f3ec52f6114efea62caef9c544ebe5" Name="Diagram1">
+        <EntityTypeShape EntityType="practiceModel.Employees" Width="1.5" PointX="5.25" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="practiceModel.Employees_roles" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="practiceModel.Mall" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="practiceModel.Mall_statuses" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="practiceModel.Pavilion" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="practiceModel.Pavilion_statuses" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="practiceModel.Rent" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="practiceModel.Rent_statuses" Width="1.5" PointX="5.25" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="practiceModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="practiceModel.Tenants" Width="1.5" PointX="5.25" PointY="15.125" IsExpanded="true" />
+        <AssociationConnector Association="practiceModel.FK__Employees__role__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="practiceModel.FK__Rent__employee_i__5FB337D6" ManuallyRouted="false" />
+        <AssociationConnector Association="practiceModel.FK__Mall__status_id__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="practiceModel.FK__Pavilion__mall_i__59063A47" ManuallyRouted="false" />
+        <AssociationConnector Association="practiceModel.FK__Pavilion__status__5812160E" ManuallyRouted="false" />
+        <AssociationConnector Association="practiceModel.FK__Rent__628FA481" ManuallyRouted="false" />
+        <AssociationConnector Association="practiceModel.FK__Rent__status_id__619B8048" ManuallyRouted="false" />
+        <AssociationConnector Association="practiceModel.FK__Rent__tenant_id__60A75C0F" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

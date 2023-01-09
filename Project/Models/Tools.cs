@@ -2,7 +2,6 @@
 using System.Drawing.Imaging;
 using System.IO;
 using System.Windows;
-using System.Windows.Interop;
 using System.Windows.Media.Imaging;
 
 namespace Project.Models
@@ -24,11 +23,11 @@ namespace Project.Models
             }
             catch (InvalidOperationException e)
             {
-                MessageBox.Show($"Ошибка :\n{e}");
+                MessageBox.Show(e.Message);
             }
             catch (Exception e)
             {
-                MessageBox.Show($"Ошибка :\n{e}");
+                MessageBox.Show(e.Message);
             }
             return photo;
         }
@@ -53,7 +52,7 @@ namespace Project.Models
             }
             catch (Exception e)
             {
-                MessageBox.Show($"Ошибка :\n{e}");
+                MessageBox.Show(e.Message);
             }
             return image;
         }
