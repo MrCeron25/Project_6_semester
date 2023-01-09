@@ -16,6 +16,10 @@
     </Page.DataContext>
 
     <Grid Style="{StaticResource GridTemplate}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
         <!--<Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
@@ -39,27 +43,33 @@
 
         </Grid>-->
 
+        <TextBlock Style="{StaticResource AuthorTemplate}" Grid.Column="1"/>
+
         <StackPanel Orientation="Vertical"
-                    HorizontalAlignment="Left"
                     VerticalAlignment="Bottom"
-                    Width="auto">
+                    Grid.Column="0">
 
-            <Button Content="Загрузить фото сотрудников"
-                HorizontalAlignment="Center"
-                Style="{StaticResource ButtonTemplate}"
-                Command="{Binding LoadEmployeesImagesCommand}"/>
-
-            <Button Content="Загрузить фото ТЦ" 
+            <Button
                 HorizontalAlignment="Stretch"
                 Style="{StaticResource ButtonTemplate}"
-                Command="{Binding LoadMallImagesCommand}"/>
+                Command="{Binding LoadEmployeesImagesCommand}">
+                <TextBlock Text="Загрузить фото сотрудников" Style="{StaticResource WrappingTextBlockTemplate}"/>
+            </Button>
+
+            <Button 
+                HorizontalAlignment="Stretch"
+                Style="{StaticResource ButtonTemplate}"
+                Command="{Binding LoadMallImagesCommand}">
+                <TextBlock Text="Загрузить фото ТЦ" Style="{StaticResource WrappingTextBlockTemplate}"/>
+            </Button>
 
         </StackPanel>
 
         <StackPanel Orientation="Vertical"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    Width="300">
+                    MaxWidth="400"
+                    Grid.ColumnSpan="2">
             <TextBlock Text="Логин"
                        Style="{StaticResource MainTextBlockTemplate}"
                    Margin="10"

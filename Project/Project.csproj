@@ -140,6 +140,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Pages\PavilionPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Pages\MallPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Windows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -147,6 +155,8 @@
     <Compile Include="Infrastructure\Commands\Base\Command.cs" />
     <Compile Include="Infrastructure\Commands\CloseApplicationCommand.cs" />
     <Compile Include="Infrastructure\Commands\LambdaCommand.cs" />
+    <Compile Include="Infrastructure\Commands\OpenPavilionCommand.cs" />
+    <Compile Include="Infrastructure\Commands\OpenMallCommand.cs" />
     <Compile Include="Models\Employees.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -204,6 +214,12 @@
     <Compile Include="ViewModels\ManagerCViewModel.cs" />
     <Compile Include="Views\Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\PavilionPage.xaml.cs">
+      <DependentUpon>PavilionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\MallPage.xaml.cs">
+      <DependentUpon>MallPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

@@ -16,17 +16,15 @@ namespace Project
                        select employees;
         }
         #endregion
+
         public MainWindow()
         {
             InitializeComponent();
-
-            // TestConnect в новом потоке
-            new Thread(() =>
-            {
-                TestConnect();
-            }).Start();
             Singleton.Instance.MainFrame = MainFrame;
             Singleton.Instance.Navigate(new LoginPage());
+            // TestConnect в новом потоке
+            Thread thread = new Thread(TestConnect);
+            thread.Start();
         }
     }
 }

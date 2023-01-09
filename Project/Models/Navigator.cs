@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Project.Views.Pages;
+using System;
 using System.Windows.Controls;
 
 namespace Project.Models
@@ -24,19 +25,23 @@ namespace Project.Models
 
         public void Navigate(Page content)
         {
-            if (MainFrame.CanGoBack)
+            if (MainFrame != null)
             {
-                MainFrame.NavigationService.RemoveBackEntry();
+                if (MainFrame.CanGoBack)
+                {
+                    MainFrame.NavigationService.RemoveBackEntry();
+                }
+                MainFrame.Navigate(content);
             }
-            MainFrame.Navigate(content);
         }
 
         private Employees _loginedEmployee { get; set; }
 
         internal void LoadEmployeeInterface(Employees employees)
         {
+            // TODO: Load state from previously suspended application
             _loginedEmployee = employees;
-            Navigate(new Page());
+            Navigate(new MallPage());
             //switch (_employees.role)
             //{
             //    //case 1:
