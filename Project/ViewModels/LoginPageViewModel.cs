@@ -123,7 +123,9 @@ namespace Project.ViewModels
             else
             {
                 result = true;
-                Singleton.Instance.LoadEmployeeInterface(Employees[0]);
+                Employees employee = Employees[0];
+                Singleton.Instance.LoginedEmployee = employee;
+                Singleton.Instance.LoadEmployeePage();
             }
             if (Count == 3)
             {
@@ -258,6 +260,7 @@ namespace Project.ViewModels
                     System.Windows.Forms.DialogResult result = folderBrowserDialog.ShowDialog();
                     if (result == System.Windows.Forms.DialogResult.OK && !string.IsNullOrWhiteSpace(folderBrowserDialog.SelectedPath))
                     {
+                        uint findedEmployees = 0;
                         DirectoryInfo directoryInfo = new DirectoryInfo(folderBrowserDialog.SelectedPath);
                         foreach (FileInfo fileInfo in directoryInfo.GetFiles())
                         {
@@ -269,16 +272,25 @@ namespace Project.ViewModels
                                 string name = fullName[1];
                                 string patronymic = fullName[2];
                                 Employees employee = (from em in Singleton.Instance.Context.Employees
-                                                      where em.name == name && em.surname == surname && em.patronymic == patronymic
+                                                      where em.name.ToLower() == name.ToLower() && 
+                                                            em.surname.ToLower() == surname.ToLower() && 
+                                                            em.patronymic.ToLower() == patronymic.ToLower()
                                                       select em).FirstOrDefault();
                                 if (employee != null)
                                 {
+                                    findedEmployees++;
                                     employee.photo = Tools.GetImageBytes(fileInfo.FullName);
                                 }
                             }
                         }
-                        Singleton.Instance.Context.SaveChanges();
-                        MessageBox.Show("Фото сотрудников загружены.");
+                        if (findedEmployees > 0)
+                        {
+                            Singleton.Instance.Context.SaveChanges();
+                            MessageBox.Show($"Фото сотрудников загружено - {findedEmployees}.");
+                        } else
+                        {
+                            MessageBox.Show($"Фото сотрудников не найдены.");
+                        }
                     }
                 }
             }
@@ -301,6 +313,7 @@ namespace Project.ViewModels
                     System.Windows.Forms.DialogResult result = folderBrowserDialog.ShowDialog();
                     if (result == System.Windows.Forms.DialogResult.OK && !string.IsNullOrWhiteSpace(folderBrowserDialog.SelectedPath))
                     {
+                        uint findedMalls = 0;
                         DirectoryInfo directoryInfo = new DirectoryInfo(folderBrowserDialog.SelectedPath);
                         foreach (FileInfo fileInfo in directoryInfo.GetFiles())
                         {
@@ -313,13 +326,20 @@ namespace Project.ViewModels
                                              select m).FirstOrDefault();
                                 if (mall != null)
                                 {
-                                    Debug.WriteLine(fileInfo);
+                                    findedMalls++;
                                     mall.photo = Tools.GetImageBytes(fileInfo.FullName);
                                 }
                             }
                         }
-                        Singleton.Instance.Context.SaveChanges();
-                        MessageBox.Show("Фото ТЦ загружены.");
+                        if (findedMalls > 0)
+                        {
+                            Singleton.Instance.Context.SaveChanges();
+                            MessageBox.Show($"Фото ТЦ загружено - {findedMalls}.");
+                        }
+                        else
+                        {
+                            MessageBox.Show($"Фото ТЦ не найдены.");
+                        }
                     }
                 }
             }

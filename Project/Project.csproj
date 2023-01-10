@@ -154,6 +154,7 @@
     </Page>
     <Compile Include="Infrastructure\Commands\Base\Command.cs" />
     <Compile Include="Infrastructure\Commands\CloseApplicationCommand.cs" />
+    <Compile Include="Infrastructure\Commands\ExitCommand.cs" />
     <Compile Include="Infrastructure\Commands\LambdaCommand.cs" />
     <Compile Include="Infrastructure\Commands\OpenPavilionCommand.cs" />
     <Compile Include="Infrastructure\Commands\OpenMallCommand.cs" />
@@ -163,6 +164,7 @@
     <Compile Include="Models\Employees_roles.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Interfaces\IUpdate.cs" />
     <Compile Include="Models\Mall.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -260,6 +262,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
+    <Folder Include="Models\Classes\" />
     <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>

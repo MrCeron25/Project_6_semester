@@ -11,7 +11,7 @@
 
     <Grid Style="{StaticResource GridTemplate}">
 
-        <!--<ContentControl Template="{StaticResource ManagerCMenu}"/>-->
+        <TextBlock Style="{StaticResource AuthorTemplate}"/>
 
         <Menu Style="{StaticResource MenuTemplate}">
             <MenuItem Header="Меню">
@@ -26,7 +26,11 @@
                     </MenuItem.Command>
                 </MenuItem>
                 <Separator />
-                <MenuItem Header="Выйти" />
+                <MenuItem Header="Выйти">
+                    <MenuItem.Command>
+                        <cmd:ExitCommand/>
+                    </MenuItem.Command>
+                </MenuItem>
             </MenuItem>
         </Menu>
 

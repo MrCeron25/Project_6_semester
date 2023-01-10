@@ -1,13 +1,12 @@
 ﻿<Application x:Class="Project.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Project"
+             xmlns:vm="clr-namespace:Project.ViewModels"
              xmlns:cmd="clr-namespace:Project.Infrastructure.Commands"
              StartupUri="..\Views\Windows\MainWindow.xaml">
     <Application.Resources>
 
-        <!--<Color x:Key="MainText">#37474f</Color>
-        <Color x:Key="AlternateText">#78909c</Color>-->
+        <vm:ManagerCViewModel x:Key="ManagerCViewModel"/>
 
         <Style x:Key="AuthorTemplate" TargetType="TextBlock">
             <Setter Property="Foreground" Value="#FFFF9C1A"/>

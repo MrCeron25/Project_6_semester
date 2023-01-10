@@ -16,21 +16,11 @@
     </Page.DataContext>
 
     <Grid Style="{StaticResource GridTemplate}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="4*"/>
-        </Grid.ColumnDefinitions>
-        <!--<Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
 
-        <ContentControl Template="{StaticResource MenuControlTemplate}"/>
-
-        <Menu Style="{StaticResource MenuTemplate}"
-              Grid.Row="0">
+        <Menu Style="{StaticResource MenuTemplate}">
             <MenuItem Header="Меню">
-                <MenuItem Header="Вход" />
+                <MenuItem Header="Загрузить фото сотрудников" Command="{Binding LoadEmployeesImagesCommand}"/>
+                <MenuItem Header="Загрузить фото ТЦ" Command="{Binding LoadMallImagesCommand}"/>
                 <Separator />
                 <MenuItem Header="Выход">
                     <MenuItem.Command>
@@ -39,31 +29,8 @@
                 </MenuItem>
             </MenuItem>
         </Menu>
-        <Grid Grid.Row="1">
-
-        </Grid>-->
 
         <TextBlock Style="{StaticResource AuthorTemplate}" Grid.Column="1"/>
-
-        <StackPanel Orientation="Vertical"
-                    VerticalAlignment="Bottom"
-                    Grid.Column="0">
-
-            <Button
-                HorizontalAlignment="Stretch"
-                Style="{StaticResource ButtonTemplate}"
-                Command="{Binding LoadEmployeesImagesCommand}">
-                <TextBlock Text="Загрузить фото сотрудников" Style="{StaticResource WrappingTextBlockTemplate}"/>
-            </Button>
-
-            <Button 
-                HorizontalAlignment="Stretch"
-                Style="{StaticResource ButtonTemplate}"
-                Command="{Binding LoadMallImagesCommand}">
-                <TextBlock Text="Загрузить фото ТЦ" Style="{StaticResource WrappingTextBlockTemplate}"/>
-            </Button>
-
-        </StackPanel>
 
         <StackPanel Orientation="Vertical"
                     HorizontalAlignment="Center"

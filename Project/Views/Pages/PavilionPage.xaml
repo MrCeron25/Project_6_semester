@@ -11,7 +11,33 @@
 
     <Grid Style="{StaticResource GridTemplate}">
 
-        <ContentControl Template="{StaticResource ManagerCMenuControlTemplate}"/>
+        <Menu Style="{StaticResource MenuTemplate}">
+            <MenuItem Header="Меню">
+                <MenuItem Header="Торговые центры">
+                    <MenuItem.Command>
+                        <cmd:OpenMallCommand/>
+                    </MenuItem.Command>
+                </MenuItem>
+                <MenuItem Header="Павильоны">
+                    <MenuItem.Command>
+                        <cmd:OpenPavilionCommand/>
+                    </MenuItem.Command>
+                </MenuItem>
+                <Separator />
+                <MenuItem Header="Выйти">
+                    <MenuItem.Command>
+                        <cmd:ExitCommand/>
+                    </MenuItem.Command>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+
+        <TextBlock Style="{StaticResource AuthorTemplate}" Grid.Column="1"/>
+
+        <TextBlock Text="PavilionPage"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontSize="40"/>
 
     </Grid>
 </Page>

@@ -1,5 +1,6 @@
 ﻿using Project.Views.Pages;
 using System;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Project.Models
@@ -33,14 +34,27 @@ namespace Project.Models
                 }
                 MainFrame.Navigate(content);
             }
+            else
+            {
+                MessageBox.Show($"MainFrame не существует.");
+            }
         }
 
         private Employees _loginedEmployee { get; set; }
 
-        internal void LoadEmployeeInterface(Employees employees)
+        public Employees LoginedEmployee
         {
-            // TODO: Load state from previously suspended application
-            _loginedEmployee = employees;
+            get => _loginedEmployee;
+            set => _loginedEmployee = value;
+        }
+
+        internal void LoadEmployeePage()
+        {
+            if (_loginedEmployee == null)
+            {
+                MessageBox.Show($"LoginedEmployee не существует.");
+                return;
+            }
             Navigate(new MallPage());
             //switch (_employees.role)
             //{
