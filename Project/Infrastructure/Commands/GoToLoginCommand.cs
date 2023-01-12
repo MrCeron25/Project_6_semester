@@ -4,10 +4,9 @@ using Project.Views.Pages;
 
 namespace Project.Infrastructure.Commands
 {
-    internal class ExitCommand : Command
+    internal class GoToLoginCommand : Command
     {
         public override bool CanExecute(object parameter) => true;
-
         public override void Execute(object parameter)
         {
             Singleton.Instance.Navigate(new LoginPage());

@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Project.Views.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для MallPage.xaml
+    /// Логика взаимодействия для MallViewingPage.xaml
     /// </summary>
-    public partial class MallPage : Page
+    public partial class MallViewingPage : Page
     {
-        public MallPage()
+        public MallViewingPage()
         {
             InitializeComponent();
         }

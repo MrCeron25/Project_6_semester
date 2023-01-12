@@ -15,6 +15,8 @@
             <Setter Property="VerticalAlignment" Value="Bottom"/>
             <Setter Property="Opacity" Value="0.5"/>
             <Setter Property="Text" Value="Торбин Илья ПКС-404"/>
+            <Setter Property="Panel.ZIndex" Value="1" />
+            <Setter Property="Margin" Value="10,0,25,0" />
         </Style>
 
         <Style x:Key="GridTemplate" TargetType="Grid">
@@ -40,16 +42,29 @@
             <Setter Property="TextAlignment" Value="Center"/>
         </Style>
 
-        <Style x:Key="AlternateTextBlockTemplate" TargetType="TextBlock">
+        <Style x:Key="TextWrappingTextBlockTemplate" TargetType="TextBlock">
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="AlternateTextBlockTemplate" TargetType="TextBlock" BasedOn="{StaticResource TextWrappingTextBlockTemplate}">
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="FontFamily" Value="Arial"/>
             <Setter Property="Foreground" Value="#78909c"/>
         </Style>
 
-        <Style x:Key="MainTextBoxTemplate" TargetType="TextBox">
+        <Style x:Key="TextWrappingTextBoxTemplate" TargetType="TextBox">
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+
+        <Style x:Key="MainTextBoxTemplate" TargetType="TextBox" BasedOn="{StaticResource TextWrappingTextBoxTemplate}">
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="FontFamily" Value="Arial"/>
             <Setter Property="Foreground" Value="#37474f"/>
+        </Style>
+
+        <Style x:Key="ComboBoxTemplate" TargetType="ComboBox" BasedOn="{StaticResource TextWrappingTextBoxTemplate}">
+            <Setter Property="Margin" Value="10"/>
         </Style>
 
         <Style x:Key="MainPasswordBoxTemplate" TargetType="PasswordBox">
@@ -65,7 +80,7 @@
             <Setter Property="FontFamily" Value="Arial"/>
         </Style>
 
-        <ControlTemplate x:Key="MenuControlTemplate">
+        <!--<ControlTemplate x:Key="MenuControlTemplate">
             <Menu Style="{StaticResource MenuTemplate}">
                 <MenuItem Header="Меню">
                     <MenuItem Header="Вход" />
@@ -92,7 +107,7 @@
                     <MenuItem Header="Выйти" />
                 </MenuItem>
             </Menu>
-        </ControlTemplate>
+        </ControlTemplate>-->
         
 
 

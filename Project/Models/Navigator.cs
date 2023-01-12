@@ -22,7 +22,12 @@ namespace Project.Models
 
         public Frame MainFrame { get; set; }
 
-        public practiceEntities Context { get; set; } = new practiceEntities();
+        private static practiceEntities _context = new practiceEntities();
+        public practiceEntities Context
+        {
+            get => _context;
+            set => _context = value;
+        }
 
         public void Navigate(Page content)
         {
@@ -55,7 +60,7 @@ namespace Project.Models
                 MessageBox.Show($"LoginedEmployee не существует.");
                 return;
             }
-            Navigate(new MallPage());
+            Navigate(new MallViewingPage());
             //switch (_employees.role)
             //{
             //    //case 1:

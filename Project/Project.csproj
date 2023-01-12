@@ -86,6 +86,9 @@
     <Reference Include="Microsoft.Extensions.Primitives, Version=3.1.32.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Primitives.3.1.32\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.39\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
@@ -144,7 +147,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Pages\MallPage.xaml">
+    <Page Include="Views\Pages\MallViewingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -154,17 +157,20 @@
     </Page>
     <Compile Include="Infrastructure\Commands\Base\Command.cs" />
     <Compile Include="Infrastructure\Commands\CloseApplicationCommand.cs" />
-    <Compile Include="Infrastructure\Commands\ExitCommand.cs" />
+    <Compile Include="Infrastructure\Commands\GoToLoginCommand.cs" />
     <Compile Include="Infrastructure\Commands\LambdaCommand.cs" />
-    <Compile Include="Infrastructure\Commands\OpenPavilionCommand.cs" />
-    <Compile Include="Infrastructure\Commands\OpenMallCommand.cs" />
+    <Compile Include="Models\DataBase\DataBase.cs" />
     <Compile Include="Models\Employees.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Employees_roles.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Interfaces\IUpdate.cs" />
+    <Compile Include="Models\DataBase\IDataBase.cs" />
+    <Compile Include="Models\MallItem.cs" />
+    <Compile Include="Models\Repository\BaseRepository.cs" />
+    <Compile Include="Models\Repository\IRepository.cs" />
+    <Compile Include="Models\ViewModel\IUpdate.cs" />
     <Compile Include="Models\Mall.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -220,8 +226,8 @@
     <Compile Include="Views\Pages\PavilionPage.xaml.cs">
       <DependentUpon>PavilionPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Pages\MallPage.xaml.cs">
-      <DependentUpon>MallPage.xaml</DependentUpon>
+    <Compile Include="Views\Pages\MallViewingPage.xaml.cs">
+      <DependentUpon>MallViewingPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -250,6 +256,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="packages.config" />
     <None Include="Resources\App.Config" />
     <None Include="Models\Model.edmx.diagram">
       <DependentUpon>Model.edmx</DependentUpon>
@@ -262,7 +269,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
-    <Folder Include="Models\Classes\" />
     <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>

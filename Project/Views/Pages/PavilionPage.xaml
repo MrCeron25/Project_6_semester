@@ -9,24 +9,17 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PavilionPage">
 
-    <Grid Style="{StaticResource GridTemplate}">
+    <Grid Style="{StaticResource GridTemplate}"
+          DataContext="{StaticResource ManagerCViewModel}">
 
         <Menu Style="{StaticResource MenuTemplate}">
             <MenuItem Header="Меню">
-                <MenuItem Header="Торговые центры">
-                    <MenuItem.Command>
-                        <cmd:OpenMallCommand/>
-                    </MenuItem.Command>
-                </MenuItem>
-                <MenuItem Header="Павильоны">
-                    <MenuItem.Command>
-                        <cmd:OpenPavilionCommand/>
-                    </MenuItem.Command>
-                </MenuItem>
+                <MenuItem Header="Торговые центры" Command="{Binding OpenMallCommand}"/>
+                <MenuItem Header="Павильоны" Command="{Binding OpenPavilionCommand}"/>
                 <Separator />
                 <MenuItem Header="Выйти">
                     <MenuItem.Command>
-                        <cmd:ExitCommand/>
+                        <cmd:GoToLoginCommand/>
                     </MenuItem.Command>
                 </MenuItem>
             </MenuItem>
