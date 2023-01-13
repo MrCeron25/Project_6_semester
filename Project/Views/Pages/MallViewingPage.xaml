@@ -4,13 +4,13 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:cmd="clr-namespace:Project.Infrastructure.Commands"
+      xmlns:vm="clr-namespace:Project.ViewModels"
       mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MallViewingPage">
 
-
     <Grid Style="{StaticResource GridTemplate}"
-          DataContext="{StaticResource ManagerCViewModel}"
+          DataContext="{StaticResource ViewingMallViewModel}"
           HorizontalAlignment="Stretch">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -18,9 +18,9 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Style="{StaticResource AuthorTemplate}" Grid.Row="3"/>
-
-        <Menu Style="{StaticResource MenuTemplate}" Grid.Row="0">
+        <Menu Style="{StaticResource MenuTemplate}" 
+              DataContext="{StaticResource ManagerCViewModel}"
+              Grid.Row="0">
             <MenuItem Header="Меню">
                 <MenuItem Header="Торговые центры" Command="{Binding OpenMallCommand}"/>
                 <MenuItem Header="Павильоны" Command="{Binding OpenPavilionCommand}"/>
@@ -35,12 +35,9 @@
             </MenuItem>
         </Menu>
 
-        <Grid Grid.Row="1" HorizontalAlignment="Stretch" ShowGridLines="True" VerticalAlignment="Center">
+        <Grid Grid.Row="1" HorizontalAlignment="Stretch" ShowGridLines="False" VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.5 *"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
@@ -55,54 +52,39 @@
                     Style="{StaticResource ButtonTemplate}"
                     Command="{Binding AddMallCommand}"
                     Grid.Column="1"/>
-            <Button Content="Изменить"
-                    Style="{StaticResource ButtonTemplate}"
-                    Command="{Binding ChangeMallCommand}"
-                    IsEnabled="{Binding IsEnabledButton}"
-                    Grid.Column="2"/>
-            <Button Content="Удалить"
-                    Style="{StaticResource ButtonTemplate}"
-                    Command="{Binding DeleteMallCommand}"
-                    IsEnabled="{Binding IsEnabledButton}"
-                    Grid.Column="3"/>
-            <Button Grid.Column="4"
-                    Style="{StaticResource ButtonTemplate}"
-                    Command="{Binding ViewingMallsCommand}"
-                    IsEnabled="{Binding IsEnabledButton}">
-                <TextBlock Text="Просмотр павильонов" 
-                           Style="{StaticResource TextWrappingTextBlockTemplate}"/>
-            </Button>
             <ComboBox ItemsSource="{Binding MallStatuses}"
-                      SelectedItem="{Binding SelectedItemMallStatuses}"
-                      Margin="10"
-                      Grid.Column="5"/>
+                      SelectedItem="{Binding SelectedItemMallStatusesSorting}"
+                      Style="{StaticResource ComboBoxTemplate}"
+                      Grid.Column="2"/>
             <ComboBox ItemsSource="{Binding Cities}"
-                      SelectedItem="{Binding SelectedItemCity}"
-                      Margin="10"
-                      Grid.Column="6"/>
-            <Grid Grid.Column="7" ShowGridLines="True" HorizontalAlignment="Center">
+                      SelectedItem="{Binding SelectedItemCitySorting}"
+                      Style="{StaticResource ComboBoxTemplate}"
+                      Grid.Column="3"/>
+            <Grid Grid.Column="4" ShowGridLines="False" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <TextBlock Text="Торговых центров найдено : "
-                           Style="{StaticResource TextWrappingTextBlockTemplate}"
+                           Style="{StaticResource AlternateTextBlockTemplate}"
                            Grid.Row="0"/>
-                <TextBlock Text="{Binding Path=Malls.Count}"
+                <TextBlock Text="{Binding Malls.Count}"
                            Style="{StaticResource TextWrappingTextBlockTemplate}"
-                           Grid.Row="1" HorizontalAlignment="Center"/>
+                           Grid.Row="1" 
+                           HorizontalAlignment="Center"
+                           FontWeight="Bold"/>
             </Grid>
         </Grid>
 
         <ListView ItemsSource="{Binding Malls}" 
                   SelectedItem="{Binding SelectedItemMall}"
                   HorizontalContentAlignment="Stretch"
-                  SelectionMode="Single"
                   x:Name="MallsListView"
+                  SelectionMode="Single"
                   Grid.Row="2">
             <ListView.ItemTemplate>
                 <DataTemplate x:Name="TableDataTemplate">
-                    <Grid ShowGridLines="True">
+                    <Grid ShowGridLines="False">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto"/>
                             <ColumnDefinition Width="*"/>
@@ -140,7 +122,10 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="Статус:" Style="{StaticResource AlternateTextBlockTemplate}"/>
-                                <TextBlock Grid.Column="1" Text="{Binding status_name}" Style="{StaticResource MainTextBlockTemplate}"/>
+                                <TextBlock Grid.Column="1" 
+                                           Text="{Binding status_name}" 
+                                           VerticalAlignment="Center"
+                                           Style="{StaticResource MainTextBlockTemplate}"/>
                             </Grid>
                             <Grid ShowGridLines="False" Grid.Row="2" Margin="5">
                                 <Grid.ColumnDefinitions>
@@ -148,7 +133,10 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="Количество павильонов:" Style="{StaticResource AlternateTextBlockTemplate}"/>
-                                <TextBlock Grid.Column="1" Text="{Binding number_of_pavilion}" Style="{StaticResource MainTextBlockTemplate}"/>
+                                <TextBlock Grid.Column="1" 
+                                           Text="{Binding number_of_pavilion}" 
+                                           VerticalAlignment="Center"
+                                           Style="{StaticResource MainTextBlockTemplate}"/>
                             </Grid>
                             <Grid ShowGridLines="False" Grid.Row="3" Margin="5">
                                 <Grid.ColumnDefinitions>
@@ -156,7 +144,10 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="Город:" Style="{StaticResource AlternateTextBlockTemplate}"/>
-                                <TextBlock Grid.Column="1" Text="{Binding city}" Style="{StaticResource MainTextBlockTemplate}"/>
+                                <TextBlock Grid.Column="1" 
+                                           Text="{Binding city}" 
+                                           VerticalAlignment="Center"
+                                           Style="{StaticResource MainTextBlockTemplate}"/>
                             </Grid>
                             <Grid ShowGridLines="False" Grid.Row="4" Margin="5">
                                 <Grid.ColumnDefinitions>
@@ -164,15 +155,23 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="Этажность:" Style="{StaticResource AlternateTextBlockTemplate}"/>
-                                <TextBlock Grid.Column="1" Text="{Binding number_of_storeys}" Style="{StaticResource MainTextBlockTemplate}"/>
+                                <TextBlock Grid.Column="1" 
+                                           Text="{Binding number_of_storeys}" 
+                                           VerticalAlignment="Center"
+                                           Style="{StaticResource MainTextBlockTemplate}"/>
                             </Grid>
                             <Grid ShowGridLines="False" Grid.Row="5" Margin="5">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="150"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Text="Коэффициент добавочной стоимости:" Style="{StaticResource AlternateTextBlockTemplate}"/>
-                                <TextBlock Grid.Column="1" Text="{Binding value_added_factor}" Style="{StaticResource MainTextBlockTemplate}"/>
+                                <TextBlock Grid.Column="0" 
+                                           Text="Коэффициент добавочной стоимости:" 
+                                           Style="{StaticResource AlternateTextBlockTemplate}"/>
+                                <TextBlock Grid.Column="1" 
+                                           Text="{Binding value_added_factor}" 
+                                           VerticalAlignment="Center"
+                                           Style="{StaticResource MainTextBlockTemplate}"/>
                             </Grid>
                             <Grid ShowGridLines="False" Grid.Row="6" Margin="5">
                                 <Grid.ColumnDefinitions>
@@ -182,10 +181,11 @@
                                 <TextBlock Grid.Column="0" Text="Стоимость : " Style="{StaticResource AlternateTextBlockTemplate}"/>
                                 <TextBlock Grid.Column="1" 
                                            Text="{Binding cost, StringFormat=\{0:C3\}, ConverterCulture='ru'}" 
+                                           VerticalAlignment="Center"
                                            Style="{StaticResource MainTextBlockTemplate}"/>
                             </Grid>
                         </Grid>
-                        <Grid Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" ShowGridLines="True">
+                        <Grid Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" ShowGridLines="False">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="*"/>

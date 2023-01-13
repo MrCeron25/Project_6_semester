@@ -216,10 +216,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\Tools.cs" />
+    <Compile Include="ViewModels\Base\UpdatableViewModel.cs" />
     <Compile Include="ViewModels\Base\ViewModel.cs" />
     <Compile Include="ViewModels\LoginPageViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\ManagerCViewModel.cs" />
+    <Compile Include="ViewModels\ViewingMallViewModel.cs" />
     <Compile Include="Views\Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>

@@ -7,6 +7,7 @@
     <Application.Resources>
 
         <vm:ManagerCViewModel x:Key="ManagerCViewModel"/>
+        <vm:ViewingMallViewModel x:Key="ViewingMallViewModel"/>
 
         <Style x:Key="AuthorTemplate" TargetType="TextBlock">
             <Setter Property="Foreground" Value="#FFFF9C1A"/>
@@ -63,8 +64,10 @@
             <Setter Property="Foreground" Value="#37474f"/>
         </Style>
 
-        <Style x:Key="ComboBoxTemplate" TargetType="ComboBox" BasedOn="{StaticResource TextWrappingTextBoxTemplate}">
+        <Style x:Key="ComboBoxTemplate" TargetType="ComboBox">
             <Setter Property="Margin" Value="10"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
         </Style>
 
         <Style x:Key="MainPasswordBoxTemplate" TargetType="PasswordBox">
@@ -108,7 +111,7 @@
                 </MenuItem>
             </Menu>
         </ControlTemplate>-->
-        
+
 
 
     </Application.Resources>

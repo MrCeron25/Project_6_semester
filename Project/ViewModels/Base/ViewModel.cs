@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Project.Models.Interfaces;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace Project.ViewModels.Base
@@ -33,5 +34,10 @@ namespace Project.ViewModels.Base
             OnPropertyChanged(PropertyName);
             return true;
         }
+
+        ///// <summary>
+        ///// Метод для создания команд для ViewModel
+        ///// </summary>
+        //public abstract void InitializingCommands();
     }
 }
