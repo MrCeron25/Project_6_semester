@@ -32,7 +32,6 @@ namespace Project.ViewModels
         }
         #endregion
 
-
         #region Видимость поля ввода капчи
         private Visibility _сaptchaTextBoxVisibility = Visibility.Hidden;
         public Visibility CaptchaTextBoxVisibility
@@ -42,7 +41,6 @@ namespace Project.ViewModels
         }
         #endregion
 
-
         #region Видимость текста изминения капчи
         private Visibility _updateCaptchaTextBlockVisibility = Visibility.Hidden;
         public Visibility UpdateCaptchaTextBlockVisibility
@@ -51,7 +49,6 @@ namespace Project.ViewModels
             set => Set(ref _updateCaptchaTextBlockVisibility, value);
         }
         #endregion
-
 
         #region Видимость текста изминения капчи
         private Visibility _captchaTextVisibility = Visibility.Hidden;

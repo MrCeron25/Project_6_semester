@@ -4,12 +4,13 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:cmd="clr-namespace:Project.Infrastructure.Commands"
+      xmlns:vm="clr-namespace:Project.ViewModels"
       mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MallViewingPage">
 
     <Grid Style="{StaticResource GridTemplate}"
-          DataContext="{StaticResource ViewingMallViewModel}"
+          DataContext="{x:Static vm:ViewingMallViewModel.Instanse}"
           HorizontalAlignment="Stretch">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -18,13 +19,13 @@
         </Grid.RowDefinitions>
 
         <Menu Style="{StaticResource MenuTemplate}" 
-              DataContext="{StaticResource ManagerCViewModel}"
+              DataContext="{x:Static vm:ManagerCViewModel.Instanse}"
               Grid.Row="0">
             <MenuItem Header="Меню">
                 <MenuItem Header="Торговые центры" Command="{Binding OpenMallCommand}"/>
                 <MenuItem Header="Павильоны" Command="{Binding OpenPavilionCommand}"/>
                 <Separator />
-                <MenuItem Header="Обновить" Command="{Binding UpdateViewModelCommand}"/>
+                <MenuItem DataContext="{x:Static vm:ViewingMallViewModel.Instanse}" Header="Обновить" Command="{Binding UpdateViewModelCommand}"/>
                 <Separator />
                 <MenuItem Header="Выйти">
                     <MenuItem.Command>

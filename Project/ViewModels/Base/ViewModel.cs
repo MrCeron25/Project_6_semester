@@ -33,10 +33,5 @@ namespace Project.ViewModels.Base
             OnPropertyChanged(PropertyName);
             return true;
         }
-
-        ///// <summary>
-        ///// Метод для создания команд для ViewModel
-        ///// </summary>
-        //public abstract void InitializingCommands();
     }
 }

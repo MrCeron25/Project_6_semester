@@ -1,14 +1,9 @@
 ﻿<Application x:Class="Project.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:vm="clr-namespace:Project.ViewModels"
-             xmlns:cmd="clr-namespace:Project.Infrastructure.Commands"
              StartupUri="..\Views\Windows\MainWindow.xaml">
     <Application.Resources>
-
-        <vm:ManagerCViewModel x:Key="ManagerCViewModel"/>
-        <vm:ViewingMallViewModel x:Key="ViewingMallViewModel"/>
-
+        
         <Style x:Key="AuthorTemplate" TargetType="TextBlock">
             <Setter Property="Foreground" Value="#FFFF9C1A"/>
             <Setter Property="FontSize" Value="20"/>

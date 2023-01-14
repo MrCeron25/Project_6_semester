@@ -10,7 +10,6 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
-using Project.Models.Validators;
 using Project.Models.Validators.MallValidators;
 
 namespace Project.ViewModels
@@ -22,30 +21,30 @@ namespace Project.ViewModels
         Change
     }
 
-    public static class LINQExtensions
-    {
-        public static IQueryable<T> If<T>(
-            this IQueryable<T> query,
-            bool should,
-            params Func<IQueryable<T>, IQueryable<T>>[] transforms)
-        {
-            return should
-                ? transforms.Aggregate(query,
-                    (current, transform) => transform.Invoke(current))
-                : query;
-        }
+    //public static class LINQExtensions
+    //{
+    //    public static IQueryable<T> If<T>(
+    //        this IQueryable<T> query,
+    //        bool should,
+    //        params Func<IQueryable<T>, IQueryable<T>>[] transforms)
+    //    {
+    //        return should
+    //            ? transforms.Aggregate(query,
+    //                (current, transform) => transform.Invoke(current))
+    //            : query;
+    //    }
 
-        public static IEnumerable<T> If<T>(
-            this IEnumerable<T> query,
-            bool should,
-            params Func<IEnumerable<T>, IEnumerable<T>>[] transforms)
-        {
-            return should
-                ? transforms.Aggregate(query,
-                    (current, transform) => transform.Invoke(current))
-                : query;
-        }
-    }
+    //    public static IEnumerable<T> If<T>(
+    //        this IEnumerable<T> query,
+    //        bool should,
+    //        params Func<IEnumerable<T>, IEnumerable<T>>[] transforms)
+    //    {
+    //        return should
+    //            ? transforms.Aggregate(query,
+    //                (current, transform) => transform.Invoke(current))
+    //            : query;
+    //    }
+    //}
 
     internal class ViewingMallViewModel : UpdatableViewModel
     {
@@ -508,8 +507,12 @@ namespace Project.ViewModels
 
         #endregion
 
+        #region Instanse
+        public static ViewingMallViewModel Instanse { get; } = new ViewingMallViewModel();
+        #endregion
+
         #region Конструктор
-        public ViewingMallViewModel()
+        private ViewingMallViewModel()
         {
             #region MallViewingPage
             AddMallCommand = new LambdaCommand(OnAddMallExecuted, CanAddMallExecute);

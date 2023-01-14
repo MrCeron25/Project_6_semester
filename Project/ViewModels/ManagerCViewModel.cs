@@ -1,4 +1,5 @@
-﻿using Project.Models;
+﻿using Project.Infrastructure.Commands;
+using Project.Models;
 using Project.ViewModels.Base;
 using Project.Views.Pages;
 using System.Windows.Input;
@@ -19,29 +20,16 @@ namespace Project.ViewModels
         private bool CanOpenPavilionCommandExecute(object parameters) => true;
         #endregion
 
-        //public ViewingMallViewModel ViewingMallViewModel { get; set; } = new ViewingMallViewModel();
-        ////public ViewingMallViewModel ViewingMallViewModel { get; set; } = new ViewingMallViewModel();
-
-
-        //public List<UpdatableViewModel> UpdatableViewModels { get; set; } = new List<UpdatableViewModel>();
-
-
-        #region Конструктор
-        public ManagerCViewModel()
-        {
-            //UpdatableViewModels.Add(ViewingMallViewModel);
-            //UpdateViewModel();
-        }
+        #region Instanse
+        public static ManagerCViewModel Instanse { get; } = new ManagerCViewModel();
         #endregion
 
-        //#region UpdateViewModel
-        //public override void UpdateViewModel()
-        //{
-        //    foreach (UpdatableViewModel viewModel in UpdatableViewModels)
-        //    {
-        //        viewModel.UpdateViewModel();
-        //    }
-        //}
-        //#endregion
+        #region Конструктор
+        private ManagerCViewModel()
+        {
+            OpenMallCommand = new LambdaCommand(OnOpenMallCommandExecuted, CanOpenMallCommandExecute);
+            OpenPavilionCommand = new LambdaCommand(OnOpenPavilionCommandExecuted, CanOpenPavilionCommandExecute);
+        }
+        #endregion
     }
 }
