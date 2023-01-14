@@ -4,7 +4,6 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:cmd="clr-namespace:Project.Infrastructure.Commands"
-      xmlns:vm="clr-namespace:Project.ViewModels"
       mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MallViewingPage">
@@ -77,7 +76,6 @@
         </Grid>
 
         <ListView ItemsSource="{Binding Malls}" 
-                  SelectedItem="{Binding SelectedItemMall}"
                   HorizontalContentAlignment="Stretch"
                   x:Name="MallsListView"
                   SelectionMode="Single"
@@ -95,7 +93,7 @@
                                  Height="120"
                                  Width="120">
                             <Ellipse.Fill>
-                                <ImageBrush ImageSource="{Binding photo}"/>
+                                <ImageBrush ImageSource="{Binding photo}" Stretch="UniformToFill"/>
                             </Ellipse.Fill>
                         </Ellipse>
                         <Grid Grid.Column="1" ShowGridLines="False" Margin="10">

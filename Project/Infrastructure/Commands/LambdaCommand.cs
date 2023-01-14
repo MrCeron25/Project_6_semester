@@ -1,5 +1,5 @@
-﻿using System;
-using Project.Infrastructure.Commands.Base;
+﻿using Project.Infrastructure.Commands.Base;
+using System;
 
 namespace Project.Infrastructure.Commands
 {

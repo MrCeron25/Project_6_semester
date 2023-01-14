@@ -1,12 +1,6 @@
-﻿using Project.Infrastructure.Commands;
-using Project.Models;
-using Project.Models.Interfaces;
+﻿using Project.Models;
 using Project.ViewModels.Base;
 using Project.Views.Pages;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
 using System.Windows.Input;
 
 namespace Project.ViewModels
@@ -35,8 +29,6 @@ namespace Project.ViewModels
         #region Конструктор
         public ManagerCViewModel()
         {
-            OpenMallCommand = new LambdaCommand(OnOpenMallCommandExecuted, CanOpenMallCommandExecute);
-            OpenPavilionCommand = new LambdaCommand(OnOpenPavilionCommandExecuted, CanOpenPavilionCommandExecute);
             //UpdatableViewModels.Add(ViewingMallViewModel);
             //UpdateViewModel();
         }

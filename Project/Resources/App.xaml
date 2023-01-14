@@ -56,12 +56,23 @@
 
         <Style x:Key="TextWrappingTextBoxTemplate" TargetType="TextBox">
             <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="TextAlignment" Value="Center"/>
         </Style>
 
         <Style x:Key="MainTextBoxTemplate" TargetType="TextBox" BasedOn="{StaticResource TextWrappingTextBoxTemplate}">
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="FontFamily" Value="Arial"/>
             <Setter Property="Foreground" Value="#37474f"/>
+        </Style>
+
+        <Style x:Key="CenteringTextBlockTemplate" TargetType="TextBlock" BasedOn="{StaticResource AlternateTextBlockTemplate}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="CenteringTextBoxTemplate" TargetType="TextBox" BasedOn="{StaticResource MainTextBoxTemplate}">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="10"/>
         </Style>
 
         <Style x:Key="ComboBoxTemplate" TargetType="ComboBox">
@@ -74,6 +85,7 @@
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="FontFamily" Value="Arial"/>
             <Setter Property="Foreground" Value="#37474f"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
         </Style>
 
         <Style x:Key="MenuTemplate" TargetType="Menu">
@@ -111,8 +123,6 @@
                 </MenuItem>
             </Menu>
         </ControlTemplate>-->
-
-
 
     </Application.Resources>
 </Application>

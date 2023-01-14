@@ -1,8 +1,8 @@
 ﻿using Project.Models;
 using Project.Views.Pages;
-using System.Windows;
 using System.Linq;
 using System.Threading;
+using System.Windows;
 
 namespace Project
 {

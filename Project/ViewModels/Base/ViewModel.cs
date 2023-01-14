@@ -1,5 +1,4 @@
-﻿using Project.Models.Interfaces;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace Project.ViewModels.Base

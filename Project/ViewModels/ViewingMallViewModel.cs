@@ -1,17 +1,27 @@
-﻿using Project.ViewModels.Base;
-using System;
-using System.Linq;
+﻿using Microsoft.Win32;
 using Project.Infrastructure.Commands;
 using Project.Models;
+using Project.ViewModels.Base;
 using Project.Views.Pages;
-using System.Collections.ObjectModel;
-using System.Windows.Input;
-using System.Windows;
-using System.Linq.Expressions;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows;
+using System.Windows.Input;
+using System.Windows.Media.Imaging;
+using Project.Models.Validators;
+using Project.Models.Validators.MallValidators;
 
 namespace Project.ViewModels
 {
+    public enum ViewingMallAction
+    {
+        None,
+        Add,
+        Change
+    }
+
     public static class LINQExtensions
     {
         public static IQueryable<T> If<T>(
@@ -39,6 +49,9 @@ namespace Project.ViewModels
 
     internal class ViewingMallViewModel : UpdatableViewModel
     {
+
+        #region MallViewingPage
+
         #region Consts
         private readonly static string DeleteNameSorting = "Удалён";
         private readonly static string AllNameSorting = "Всё";
@@ -192,6 +205,8 @@ namespace Project.ViewModels
         private void OnAddMallExecuted(object parameters)
         {
             Console.WriteLine("AddMallCommand");
+            CurrentMallActionEntities = ViewingMallAction.Add;
+            Singleton.Instance.Navigate(new MallPage());
         }
         private bool CanAddMallExecute(object parameters) => true;
         #endregion
@@ -200,9 +215,15 @@ namespace Project.ViewModels
         public ICommand ChangeMallCommand { get; }
         private void OnChangeMallExecuted(object parameters)
         {
-            MallItem mall = parameters as MallItem;
             Console.WriteLine("ChangeMallCommand");
-            Console.WriteLine(mall);
+            MallItem mall = parameters as MallItem;
+            if (mall != null)
+            {
+                Console.WriteLine(mall);
+                SelectedItemMall = mall;
+            }
+            CurrentMallActionEntities = ViewingMallAction.Change;
+            Singleton.Instance.Navigate(new MallPage());
         }
         private bool CanChangeMallExecute(object parameters) => true;
         #endregion
@@ -228,7 +249,7 @@ namespace Project.ViewModels
                 ).FirstOrDefault();
                 Singleton.Instance.Context.SaveChanges();
                 UpdateMalls();
-                MessageBox.Show($"Торговый центр удалён.");
+                MessageBox.Show($"Торговый центр '{mall.mall_name}' удалён.");
             }
             catch (Exception e)
             {
@@ -326,14 +347,184 @@ namespace Project.ViewModels
         }
         #endregion
 
+        #endregion
+
+        #region MallPage
+
+        #region BackCommand
+        public ICommand BackCommand { get; }
+        private void OnBackCommandExecuted(object parameters) => Singleton.Instance.Navigate(new MallViewingPage());
+        private bool CanBackCommandExecute(object parameters) => true;
+        #endregion
+
+        #region CurrentMall
+        private Mall _currentMall = new Mall();
+        public Mall CurrentMall
+        {
+            get => _currentMall;
+            set => Set(ref _currentMall, value);
+        }
+        #endregion
+
+        #region MallPageSelectedMallStatus
+        private string _mallPageSelectedMallStatus;
+        public string MallPageSelectedMallStatus
+        {
+            get => _mallPageSelectedMallStatus;
+            set => Set(ref _mallPageSelectedMallStatus, value);
+        }
+        #endregion
+
+
+        #region CurrentMallActionEntities
+        private ViewingMallAction _currentMallActionEntities = ViewingMallAction.None;
+        public ViewingMallAction CurrentMallActionEntities
+        {
+            get => _currentMallActionEntities;
+            set
+            {
+                Set(ref _currentMallActionEntities, value);
+                UpdateStatuses();
+                switch (CurrentMallActionEntities)
+                {
+                    case ViewingMallAction.Add:
+                        MallPageButtonName = "Добавить";
+                        LoadedMallPhoto = null;
+                        CurrentMall = new Mall();
+                        break;
+                    case ViewingMallAction.Change:
+                        MallPageButtonName = "Изменить";
+                        CurrentMall = (
+                            from m in Singleton.Instance.Context.Mall
+                            where m.mall_id == SelectedItemMall.mall_id
+                            select m
+                        ).FirstOrDefault();
+                        MallPageSelectedMallStatus = SelectedItemMall.status_name;
+                        if (CurrentMall.photo != null)
+                        {
+                            LoadedMallPhoto = Tools.BytesToImage(CurrentMall.photo);
+                        }
+                        break;
+                }
+            }
+        }
+        #endregion
+
+        #region LoadedMallPhoto
+        private BitmapImage _loadedMallPhoto;
+        public BitmapImage LoadedMallPhoto
+        {
+            get => _loadedMallPhoto;
+            set => Set(ref _loadedMallPhoto, value);
+        }
+        #endregion
+
+        #region MallPageButtonName
+        private string _mallPageButtonName;
+        public string MallPageButtonName
+        {
+            get => _mallPageButtonName;
+            set => Set(ref _mallPageButtonName, value);
+        }
+        #endregion
+
+        #region LoadMallPhotoCommand
+        public ICommand LoadMallPhotoCommand { get; }
+        private bool CanLoadMallPhotoCommandExecute(object parameters) => true;
+        private void OnLoadMallPhotoCommandExecuted(object parameters)
+        {
+            try
+            {
+                OpenFileDialog fileDialog = new OpenFileDialog
+                {
+                    Filter = "Image Files|*.jpg;*png;"
+                };
+                if ((bool)fileDialog.ShowDialog())
+                {
+                    if (fileDialog.FileName.EndsWith(".jpg") ||
+                        fileDialog.FileName.EndsWith(".png"))
+                    {
+                        CurrentMall.photo = Tools.GetImageBytes(fileDialog.FileName);
+                        LoadedMallPhoto = new BitmapImage(new Uri(fileDialog.FileName));
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+        #endregion
+
+        #region MallPageExecuteCommand
+        public ICommand MallPageExecuteCommand { get; }
+        private bool CanMallPageExecuteCommandExecute(object parameters) => true;
+        private void OnMallPageExecuteCommandExecuted(object parameters)
+        {
+            string error = string.Empty;
+            MallValidator mallValidator = new MallValidator();
+            if (mallValidator.IsNotValid(CurrentMall, out error))
+            {
+                MessageBox.Show(error);
+            }
+            else if (MallPageSelectedMallStatus == null)
+            {
+                MessageBox.Show("Статус не выбран");
+            }
+            else
+            {
+                try
+                {
+                    CurrentMall.status_id = (
+                        from ms in Singleton.Instance.Context.Mall_statuses
+                        where ms.status_name == MallPageSelectedMallStatus
+                        select ms.status_id
+                    ).FirstOrDefault();
+                    CurrentMall.mall_name = CurrentMall.mall_name.Trim();
+                    CurrentMall.city = CurrentMall.city.Trim();
+                    switch (CurrentMallActionEntities)
+                    {
+                        case ViewingMallAction.Add:
+                            Singleton.Instance.Context.Mall.Add(CurrentMall);
+                            MessageBox.Show($"Торговый центр добавлен.");
+                            break;
+                        case ViewingMallAction.Change:
+                            MessageBox.Show($"Торговый центр изменён.");
+                            break;
+                    }
+                    Singleton.Instance.Context.SaveChanges();
+                    Singleton.Instance.Navigate(new MallViewingPage());
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                }
+                SelectedItemMallStatusesSorting = AllNameSorting;
+                SelectedItemCitySorting = AllNameSorting;
+                UpdateViewModel();
+            }
+        }
+        #endregion
+
+        #endregion
+
         #region Конструктор
         public ViewingMallViewModel()
         {
+            #region MallViewingPage
             AddMallCommand = new LambdaCommand(OnAddMallExecuted, CanAddMallExecute);
             ChangeMallCommand = new LambdaCommand(OnChangeMallExecuted, CanChangeMallExecute);
             DeleteMallCommand = new LambdaCommand(OnDeleteMallExecuted, CanDeleteMallExecute);
             ViewingMallsCommand = new LambdaCommand(OnViewingMallsExecuted, CanViewingMallsExecute);
             UpdateViewModelCommand = new LambdaCommand(OnUpdateViewModelCommandExecuted, CanUpdateViewModelCommandExecute);
+            #endregion
+
+            #region MallPage
+            BackCommand = new LambdaCommand(OnBackCommandExecuted, CanBackCommandExecute);
+            MallPageExecuteCommand = new LambdaCommand(OnMallPageExecuteCommandExecuted, CanMallPageExecuteCommandExecute);
+            LoadMallPhotoCommand = new LambdaCommand(OnLoadMallPhotoCommandExecuted, CanLoadMallPhotoCommandExecute);
+            #endregion
+
             UpdateViewModel();
         }
         #endregion
@@ -341,7 +532,6 @@ namespace Project.ViewModels
         #region UpdateViewModel
         public override void UpdateViewModel()
         {
-            Console.WriteLine("UpdateViewModel");
             UpdateMalls();
             UpdateStatuses();
             UpdateCities();

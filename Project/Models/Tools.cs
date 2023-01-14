@@ -46,7 +46,7 @@ namespace Project.Models
                     image.EndInit();
                 }
             }
-            catch (ArgumentNullException e)
+            catch (ArgumentNullException)
             {
                 MessageBox.Show($"Ошибка загрузки фотографии.");
             }

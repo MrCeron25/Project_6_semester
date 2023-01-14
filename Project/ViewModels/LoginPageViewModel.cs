@@ -1,16 +1,15 @@
 ﻿using Project.Infrastructure.Commands;
-using Project.ViewModels.Base;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Windows;
-using System.Windows.Input;
-using System;
-using System.Drawing;
-using System.Linq;
-using System.Windows.Interop;
-using System.Windows.Controls;
 using Project.Models;
+using Project.ViewModels.Base;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Interop;
 namespace Project.ViewModels
 {
     internal class LoginPageViewModel : ViewModel
@@ -272,8 +271,8 @@ namespace Project.ViewModels
                                 string name = fullName[1];
                                 string patronymic = fullName[2];
                                 Employees employee = (from em in Singleton.Instance.Context.Employees
-                                                      where em.name.ToLower() == name.ToLower() && 
-                                                            em.surname.ToLower() == surname.ToLower() && 
+                                                      where em.name.ToLower() == name.ToLower() &&
+                                                            em.surname.ToLower() == surname.ToLower() &&
                                                             em.patronymic.ToLower() == patronymic.ToLower()
                                                       select em).FirstOrDefault();
                                 if (employee != null)
@@ -287,7 +286,8 @@ namespace Project.ViewModels
                         {
                             Singleton.Instance.Context.SaveChanges();
                             MessageBox.Show($"Фото сотрудников загружено - {findedEmployees}.");
-                        } else
+                        }
+                        else
                         {
                             MessageBox.Show($"Фото сотрудников не найдены.");
                         }

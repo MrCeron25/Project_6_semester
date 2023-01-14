@@ -14,6 +14,21 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -143,6 +158,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Pages\MallPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Pages\PavilionPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -159,17 +178,23 @@
     <Compile Include="Infrastructure\Commands\CloseApplicationCommand.cs" />
     <Compile Include="Infrastructure\Commands\GoToLoginCommand.cs" />
     <Compile Include="Infrastructure\Commands\LambdaCommand.cs" />
-    <Compile Include="Models\DataBase\DataBase.cs" />
     <Compile Include="Models\Employees.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Employees_roles.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DataBase\IDataBase.cs" />
     <Compile Include="Models\MallItem.cs" />
-    <Compile Include="Models\Repository\BaseRepository.cs" />
-    <Compile Include="Models\Repository\IRepository.cs" />
+    <Compile Include="Models\Validators\Base\BaseErrorValidator.cs" />
+    <Compile Include="Models\Validators\Base\BaseValidator.cs" />
+    <Compile Include="Models\Validators\MallValidators\MallCityValidator.cs" />
+    <Compile Include="Models\Validators\MallValidators\MallCostValidator.cs" />
+    <Compile Include="Models\Validators\MallValidators\MallNameValidator.cs" />
+    <Compile Include="Models\Validators\MallValidators\MallNumberOfPavilionValidator.cs" />
+    <Compile Include="Models\Validators\MallValidators\MallNumberOfStoreysValidator.cs" />
+    <Compile Include="Models\Validators\MallValidators\MallPhotoValidator.cs" />
+    <Compile Include="Models\Validators\MallValidators\MallValidator.cs" />
+    <Compile Include="Models\Validators\MallValidators\MallValueAddedFactorValidator.cs" />
     <Compile Include="Models\ViewModel\IUpdate.cs" />
     <Compile Include="Models\Mall.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -225,6 +250,9 @@
     <Compile Include="Views\Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\MallPage.xaml.cs">
+      <DependentUpon>MallPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\PavilionPage.xaml.cs">
       <DependentUpon>PavilionPage.xaml</DependentUpon>
     </Compile>
@@ -258,7 +286,6 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="packages.config" />
     <None Include="Resources\App.Config" />
     <None Include="Models\Model.edmx.diagram">
       <DependentUpon>Model.edmx</DependentUpon>
@@ -290,6 +317,18 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 и x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
