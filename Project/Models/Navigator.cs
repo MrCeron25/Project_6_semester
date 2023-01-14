@@ -59,7 +59,7 @@ namespace Project.Models
                 MessageBox.Show($"LoginedEmployee не существует.");
                 return;
             }
-            Navigate(new MallViewingPage());
+            Navigate(new ViewingMallsPage());
             //switch (_employees.role)
             //{
             //    //case 1:

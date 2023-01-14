@@ -158,7 +158,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Pages\MallPage.xaml">
+    <Page Include="Views\Pages\MallPageTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -166,7 +166,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Pages\MallViewingPage.xaml">
+    <Page Include="Views\Pages\ViewingMallsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -195,6 +195,7 @@
     <Compile Include="Models\Validators\MallValidators\MallPhotoValidator.cs" />
     <Compile Include="Models\Validators\MallValidators\MallValidator.cs" />
     <Compile Include="Models\Validators\MallValidators\MallValueAddedFactorValidator.cs" />
+    <Compile Include="ViewModels\Base\ViewModelActions.cs" />
     <Compile Include="Models\ViewModel\IUpdate.cs" />
     <Compile Include="Models\Mall.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -245,19 +246,20 @@
     <Compile Include="ViewModels\Base\ViewModel.cs" />
     <Compile Include="ViewModels\LoginPageViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\MallPageTemplateViewModel.cs" />
     <Compile Include="ViewModels\ManagerCViewModel.cs" />
-    <Compile Include="ViewModels\ViewingMallViewModel.cs" />
+    <Compile Include="ViewModels\ViewingMallsViewModel.cs" />
     <Compile Include="Views\Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Pages\MallPage.xaml.cs">
-      <DependentUpon>MallPage.xaml</DependentUpon>
+    <Compile Include="Views\Pages\MallPageTemplate.xaml.cs">
+      <DependentUpon>MallPageTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\PavilionPage.xaml.cs">
       <DependentUpon>PavilionPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Pages\MallViewingPage.xaml.cs">
-      <DependentUpon>MallViewingPage.xaml</DependentUpon>
+    <Compile Include="Views\Pages\ViewingMallsPage.xaml.cs">
+      <DependentUpon>ViewingMallsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

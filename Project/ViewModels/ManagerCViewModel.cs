@@ -10,7 +10,7 @@ namespace Project.ViewModels
     {
         #region OpenMallCommand
         public ICommand OpenMallCommand { get; }
-        private void OnOpenMallCommandExecuted(object parameters) => Singleton.Instance.Navigate(new MallViewingPage());
+        private void OnOpenMallCommandExecuted(object parameters) => Singleton.Instance.Navigate(new ViewingMallsPage());
         private bool CanOpenMallCommandExecute(object parameters) => true;
         #endregion
 

@@ -3,11 +3,11 @@
 namespace Project.Views.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для MallViewingPage.xaml
+    /// Логика взаимодействия для ViewingMallsPage.xaml
     /// </summary>
-    public partial class MallViewingPage : Page
+    public partial class ViewingMallsPage : Page
     {
-        public MallViewingPage()
+        public ViewingMallsPage()
         {
             InitializeComponent();
         }

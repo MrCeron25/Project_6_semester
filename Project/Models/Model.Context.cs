@@ -10,25 +10,11 @@
 namespace Project.Models
 {
     using System;
-    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    using System.Linq;
-    using System.Windows.Input;
-
+    
     public partial class practiceEntities : DbContext
     {
-
-        /// <summary>
-        /// При обновлении данных обновляем все сущности
-        /// </summary>
-        /// <returns></returns>
-        public int SaveChanges(Action commands)
-        {
-            //commands?.Invoke();
-            return base.SaveChanges();
-        }
-
         public practiceEntities()
             : base("name=practiceEntities")
         {
