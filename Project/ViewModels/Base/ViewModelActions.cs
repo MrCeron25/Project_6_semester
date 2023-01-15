@@ -19,5 +19,10 @@ namespace Project.Models.ViewModel
         public ICommand DeleteCommand => _deleteCommand;
         protected abstract void OnDeleteExecuted(object parameters);
         protected virtual bool CanDeleteExecute(object parameters) => true;
+
+        protected ICommand _updateViewModelCommand { get; set; }
+        public ICommand UpdateViewModelCommand => _updateViewModelCommand;
+        protected virtual void OnUpdateViewModelCommandExecuted(object parameters) => UpdateViewModel();
+        protected virtual bool CanUpdateViewModelCommandExecute(object parameters) => true;
     }
 }

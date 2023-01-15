@@ -162,7 +162,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Pages\PavilionPage.xaml">
+    <Page Include="Views\Pages\ViewingPavilionsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -249,14 +249,15 @@
     <Compile Include="ViewModels\MallPageTemplateViewModel.cs" />
     <Compile Include="ViewModels\ManagerCViewModel.cs" />
     <Compile Include="ViewModels\ViewingMallsViewModel.cs" />
+    <Compile Include="ViewModels\ViewingPavilionsViewModel.cs" />
     <Compile Include="Views\Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\MallPageTemplate.xaml.cs">
       <DependentUpon>MallPageTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Pages\PavilionPage.xaml.cs">
-      <DependentUpon>PavilionPage.xaml</DependentUpon>
+    <Compile Include="Views\Pages\ViewingPavilionsPage.xaml.cs">
+      <DependentUpon>ViewingPavilionsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\ViewingMallsPage.xaml.cs">
       <DependentUpon>ViewingMallsPage.xaml</DependentUpon>

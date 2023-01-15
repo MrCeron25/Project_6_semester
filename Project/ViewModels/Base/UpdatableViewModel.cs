@@ -4,6 +4,6 @@ namespace Project.ViewModels.Base
 {
     internal abstract class UpdatableViewModel : ViewModel, IUpdate
     {
-        public virtual void UpdateViewModel() { }
+        public abstract void UpdateViewModel();
     }
 }

@@ -6,7 +6,7 @@ using System.Windows.Input;
 
 namespace Project.ViewModels
 {
-    internal class ManagerCViewModel : UpdatableViewModel
+    internal class ManagerCViewModel : ViewModel
     {
         #region OpenMallCommand
         public ICommand OpenMallCommand { get; }
@@ -16,7 +16,7 @@ namespace Project.ViewModels
 
         #region OpenPavilionCommand
         public ICommand OpenPavilionCommand { get; }
-        private void OnOpenPavilionCommandExecuted(object parameters) => Singleton.Instance.Navigate(new PavilionPage());
+        private void OnOpenPavilionCommandExecuted(object parameters) => Singleton.Instance.Navigate(new ViewingPavilionsPage());
         private bool CanOpenPavilionCommandExecute(object parameters) => true;
         #endregion
 

@@ -3,7 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="..\Views\Windows\MainWindow.xaml">
     <Application.Resources>
-        
+
+        <Style x:Key="BorderTemplate" TargetType="Border">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="CornerRadius" Value="100"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Padding" Value="15"/>
+            <Setter Property="Background" Value="#f0f8ff"/>
+        </Style>
+
         <Style x:Key="AuthorTemplate" TargetType="TextBlock">
             <Setter Property="Foreground" Value="#FFFF9C1A"/>
             <Setter Property="FontSize" Value="20"/>
@@ -38,12 +47,12 @@
             <Setter Property="TextAlignment" Value="Center"/>
         </Style>
 
-        <Style x:Key="TextWrappingTextBlockTemplate" TargetType="TextBlock">
+        <Style x:Key="MainWrappingTextBlockTemplate" TargetType="TextBlock" BasedOn="{StaticResource MainTextBlockTemplate}">
             <Setter Property="TextWrapping" Value="Wrap"/>
             <Setter Property="TextAlignment" Value="Center"/>
         </Style>
 
-        <Style x:Key="AlternateTextBlockTemplate" TargetType="TextBlock" BasedOn="{StaticResource TextWrappingTextBlockTemplate}">
+        <Style x:Key="AlternateTextBlockTemplate" TargetType="TextBlock" BasedOn="{StaticResource WrappingTextBlockTemplate}">
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="FontFamily" Value="Arial"/>
             <Setter Property="Foreground" Value="#78909c"/>

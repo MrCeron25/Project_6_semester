@@ -17,11 +17,11 @@ namespace Project.ViewModels
         public readonly static string AllNameSorting = "Всё";
         #endregion
 
-        #region UpdateViewModelCommand
-        public ICommand UpdateViewModelCommand { get; }
-        private void OnUpdateViewModelCommandExecuted(object parameters) => UpdateViewModel();
-        private bool CanUpdateViewModelCommandExecute(object parameters) => true;
-        #endregion
+        //#region UpdateViewModelCommand
+        //public ICommand UpdateViewModelCommand { get; }
+        //private void OnUpdateViewModelCommandExecuted(object parameters) => UpdateViewModel();
+        //private bool CanUpdateViewModelCommandExecute(object parameters) => true;
+        //#endregion
 
         #region Malls
         private ObservableCollection<MallItem> _malls = null;
@@ -142,6 +142,8 @@ namespace Project.ViewModels
             Console.WriteLine("ViewingPavilionsCommand");
             MallItem mall = parameters as MallItem;
             Console.WriteLine(mall);
+            ViewingPavilionsViewModel.Instanse.SelectedItemMall = mall;
+            Singleton.Instance.Navigate(new ViewingPavilionsPage());
         }
         private bool CanViewingPavilionsExecute(object parameters) => true;
         #endregion
@@ -287,8 +289,7 @@ namespace Project.ViewModels
             _changeCommand = new LambdaCommand(OnChangeExecuted, CanChangeExecute);
             _deleteCommand = new LambdaCommand(OnDeleteExecuted, CanDeleteExecute);
             ViewingPavilionsCommand = new LambdaCommand(OnViewingPavilionsExecuted, CanViewingPavilionsExecute);
-            UpdateViewModelCommand = new LambdaCommand(OnUpdateViewModelCommandExecuted, CanUpdateViewModelCommandExecute);
-
+            _updateViewModelCommand = new LambdaCommand(OnUpdateViewModelCommandExecuted, CanUpdateViewModelCommandExecute);
             UpdateViewModel();
         }
         #endregion
