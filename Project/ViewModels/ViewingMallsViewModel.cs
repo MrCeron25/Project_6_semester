@@ -13,15 +13,9 @@ namespace Project.ViewModels
     internal class ViewingMallsViewModel : ViewModelActionCommand
     {
         #region Consts
-        private readonly static string DeleteNameSorting = "Удалён";
-        public readonly static string AllNameSorting = "Всё";
+        private readonly static string DeleteNameSorting = Application.Current.FindResource("DeleteNameSorting") as string;
+        private readonly static string AllNameSorting = Application.Current.FindResource("AllNameSorting") as string;
         #endregion
-
-        //#region UpdateViewModelCommand
-        //public ICommand UpdateViewModelCommand { get; }
-        //private void OnUpdateViewModelCommandExecuted(object parameters) => UpdateViewModel();
-        //private bool CanUpdateViewModelCommandExecute(object parameters) => true;
-        //#endregion
 
         #region Malls
         private ObservableCollection<MallItem> _malls = null;
@@ -164,10 +158,10 @@ namespace Project.ViewModels
         #region UpdateStatuses
         public void UpdateStatuses()
         {
-            MallStatuses = new ObservableCollection<string>((
+            MallStatuses = new ObservableCollection<string>(
                     from mall_statuses in Singleton.Instance.Context.Mall_statuses
                     where mall_statuses.status_name != DeleteNameSorting
-                    select mall_statuses.status_name).AsEnumerable())
+                    select mall_statuses.status_name)
             { AllNameSorting };
         }
         #endregion
@@ -206,9 +200,7 @@ namespace Project.ViewModels
                     select m.city
                 ).Distinct().ToList()
             )
-            {
-                AllNameSorting
-            };
+            { AllNameSorting };
         }
         #endregion
 
@@ -273,7 +265,7 @@ namespace Project.ViewModels
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message);
+                MessageBox.Show($"{e}");
             }
         }
         #endregion
@@ -288,8 +280,10 @@ namespace Project.ViewModels
             _addCommand = new LambdaCommand(OnAddExecuted, CanAddExecute);
             _changeCommand = new LambdaCommand(OnChangeExecuted, CanChangeExecute);
             _deleteCommand = new LambdaCommand(OnDeleteExecuted, CanDeleteExecute);
-            ViewingPavilionsCommand = new LambdaCommand(OnViewingPavilionsExecuted, CanViewingPavilionsExecute);
             _updateViewModelCommand = new LambdaCommand(OnUpdateViewModelCommandExecuted, CanUpdateViewModelCommandExecute);
+
+            ViewingPavilionsCommand = new LambdaCommand(OnViewingPavilionsExecuted, CanViewingPavilionsExecute);
+
             UpdateViewModel();
         }
         #endregion

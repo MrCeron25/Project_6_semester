@@ -15,7 +15,7 @@ namespace Project.Models.Validators.MallValidators
             if (!mallNumberOfPavilionValidator) return false;
             bool mallCityValidator = new MallCityValidator().IsValid(data.city, out error);
             if (!mallCityValidator) return false;
-            bool mallValueAddedFactorValidator = new MallValueAddedFactorValidator().IsValid(data.value_added_factor, out error);
+            bool mallValueAddedFactorValidator = new PavilionValueAddedFactorValidator().IsValid(data.value_added_factor, out error);
             if (!mallValueAddedFactorValidator) return false;
             bool mallNumberOfStoreysValidator = new MallNumberOfStoreysValidator().IsValid(data.number_of_storeys, out error);
             if (!mallNumberOfStoreysValidator) return false;

@@ -162,6 +162,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Pages\PavilionPageTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\PavilionRental.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Pages\ViewingPavilionsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -185,6 +193,7 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MallItem.cs" />
+    <Compile Include="Models\PavilionItem.cs" />
     <Compile Include="Models\Validators\Base\BaseErrorValidator.cs" />
     <Compile Include="Models\Validators\Base\BaseValidator.cs" />
     <Compile Include="Models\Validators\MallValidators\MallCityValidator.cs" />
@@ -195,6 +204,12 @@
     <Compile Include="Models\Validators\MallValidators\MallPhotoValidator.cs" />
     <Compile Include="Models\Validators\MallValidators\MallValidator.cs" />
     <Compile Include="Models\Validators\MallValidators\MallValueAddedFactorValidator.cs" />
+    <Compile Include="Models\Validators\PavilionValidators\PavilionCostPerSquareMeterValidator.cs" />
+    <Compile Include="Models\Validators\PavilionValidators\PavilionSquareValidator.cs" />
+    <Compile Include="Models\Validators\PavilionValidators\PavilionValidator.cs" />
+    <Compile Include="Models\Validators\PavilionValidators\PavilionValueAddedFactorValidator.cs" />
+    <Compile Include="Models\Validators\PavilionValidators\PavilionPavilionNumberValidator.cs" />
+    <Compile Include="Models\Validators\PavilionValidators\PavilionFloorValidator.cs" />
     <Compile Include="ViewModels\Base\ViewModelActions.cs" />
     <Compile Include="Models\ViewModel\IUpdate.cs" />
     <Compile Include="Models\Mall.cs">
@@ -248,6 +263,7 @@
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\MallPageTemplateViewModel.cs" />
     <Compile Include="ViewModels\ManagerCViewModel.cs" />
+    <Compile Include="ViewModels\PavilionPageTemplateViewModel.cs" />
     <Compile Include="ViewModels\ViewingMallsViewModel.cs" />
     <Compile Include="ViewModels\ViewingPavilionsViewModel.cs" />
     <Compile Include="Views\Pages\LoginPage.xaml.cs">
@@ -255,6 +271,12 @@
     </Compile>
     <Compile Include="Views\Pages\MallPageTemplate.xaml.cs">
       <DependentUpon>MallPageTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\PavilionPageTemplate.xaml.cs">
+      <DependentUpon>PavilionPageTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\PavilionRental.xaml.cs">
+      <DependentUpon>PavilionRental.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\ViewingPavilionsPage.xaml.cs">
       <DependentUpon>ViewingPavilionsPage.xaml</DependentUpon>

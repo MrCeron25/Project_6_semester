@@ -103,7 +103,7 @@
                                 </Ellipse.Fill>
                             </Ellipse>
                             <Grid Grid.Column="1" 
-                                  ShowGridLines="True"
+                                  ShowGridLines="False" 
                                   VerticalAlignment="Center"
                                   HorizontalAlignment="Stretch">
                                 <Grid.RowDefinitions>
@@ -115,7 +115,7 @@
                                     <RowDefinition Height="1*"/>
                                     <RowDefinition Height="1*"/>
                                 </Grid.RowDefinitions>
-                                <Grid ShowGridLines="True" 
+                                <Grid ShowGridLines="False"  
                                       Grid.Row="0" 
                                       Margin="5"
                                       HorizontalAlignment="Stretch" 
@@ -133,7 +133,7 @@
                                                Text="{Binding mall_name}"
                                                Style="{StaticResource MainWrappingTextBlockTemplate}"/>
                                 </Grid>
-                                <Grid ShowGridLines="True" Grid.Row="1" Margin="5">
+                                <Grid ShowGridLines="False"  Grid.Row="1" Margin="5">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="100"/>
                                         <ColumnDefinition Width="*"/>
@@ -190,7 +190,7 @@
                                            VerticalAlignment="Center"
                                            Style="{StaticResource MainTextBlockTemplate}"/>
                                 </Grid>
-                                <Grid ShowGridLines="True" Grid.Row="6" Margin="5">
+                                <Grid ShowGridLines="False"  Grid.Row="6" Margin="5">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="100"/>
                                         <ColumnDefinition Width="*"/>

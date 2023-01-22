@@ -63,8 +63,8 @@
                        Grid.Column="0"
                        Style="{StaticResource CenteringTextBlockTemplate}"/>
             <ComboBox Grid.Row="1"
-                      ItemsSource="{Binding MallStatuses, Source={x:Static vm:ViewingMallsViewModel.Instanse}}"
-                      SelectedItem="{Binding MallPageTemplateSelectedMallStatus}"
+                      ItemsSource="{Binding MallStatuses}"
+                      SelectedItem="{Binding SelectedMallStatus}"
                       VerticalAlignment="Center"
                       Grid.Column="1"
                       Margin="5"/>

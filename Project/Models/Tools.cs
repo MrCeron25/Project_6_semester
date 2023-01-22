@@ -23,11 +23,11 @@ namespace Project.Models
             }
             catch (InvalidOperationException e)
             {
-                MessageBox.Show(e.Message);
+                MessageBox.Show($"{e}");
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message);
+                MessageBox.Show($"{e}");
             }
             return photo;
         }
@@ -52,7 +52,7 @@ namespace Project.Models
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message);
+                MessageBox.Show($"{e}");
             }
             return image;
         }
@@ -74,7 +74,7 @@ namespace Project.Models
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message);
+                MessageBox.Show($"{e}");
             }
             return bitmapImage;
         }

@@ -293,7 +293,7 @@ namespace Project.ViewModels
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message);
+                MessageBox.Show($"{e}");
             }
         }
 
@@ -342,7 +342,7 @@ namespace Project.ViewModels
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message);
+                MessageBox.Show($"{e}");
             }
         }
 

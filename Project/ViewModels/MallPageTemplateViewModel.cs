@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using Project.Models.Validators.MallValidators;
+using System.Collections.ObjectModel;
 
 namespace Project.ViewModels
 {
@@ -18,8 +19,13 @@ namespace Project.ViewModels
         Change
     }
 
-    internal class MallPageTemplateViewModel : ViewModel
+    internal class MallPageTemplateViewModel : UpdatableViewModel
     {
+        #region Consts
+        private readonly static string AllNameSorting = Application.Current.FindResource("AllNameSorting") as string;
+        private readonly static string DeleteNameSorting = Application.Current.FindResource("DeleteNameSorting") as string;
+        #endregion
+
         #region BackCommand
         public ICommand BackCommand { get; }
         private void OnBackCommandExecuted(object parameters) => Singleton.Instance.Navigate(new ViewingMallsPage());
@@ -35,12 +41,12 @@ namespace Project.ViewModels
         }
         #endregion
 
-        #region MallPageTemplateSelectedMallStatus
-        private string _MallPageTemplateSelectedMallStatus;
-        public string MallPageTemplateSelectedMallStatus
+        #region SelectedMallStatus
+        private string _selectedMallStatus;
+        public string SelectedMallStatus
         {
-            get => _MallPageTemplateSelectedMallStatus;
-            set => Set(ref _MallPageTemplateSelectedMallStatus, value);
+            get => _selectedMallStatus;
+            set => Set(ref _selectedMallStatus, value);
         }
         #endregion
 
@@ -67,7 +73,7 @@ namespace Project.ViewModels
                             where m.mall_id == ViewingMallsViewModel.Instanse.SelectedItemMall.mall_id
                             select m
                         ).FirstOrDefault();
-                        MallPageTemplateSelectedMallStatus = ViewingMallsViewModel.Instanse.SelectedItemMall.status_name;
+                        SelectedMallStatus = ViewingMallsViewModel.Instanse.SelectedItemMall.status_name;
                         if (CurrentMall.photo != null)
                         {
                             LoadedMallPhoto = Tools.BytesToImage(CurrentMall.photo);
@@ -124,6 +130,25 @@ namespace Project.ViewModels
         }
         #endregion
 
+        #region MallStatuses
+        private ObservableCollection<string> _mallStatuses = new ObservableCollection<string>();
+        public ObservableCollection<string> MallStatuses
+        {
+            get => _mallStatuses;
+            set => Set(ref _mallStatuses, value);
+        }
+        #endregion
+
+        #region UpdateMallStatuses
+        public void UpdateMallStatuses()
+        {
+            MallStatuses = new ObservableCollection<string>(
+                    from mall_statuses in Singleton.Instance.Context.Mall_statuses
+                    where mall_statuses.status_name != DeleteNameSorting
+                    select mall_statuses.status_name);
+        }
+        #endregion
+
         #region MallPageTemplateExecuteCommand
         public ICommand MallPageTemplateExecuteCommand { get; }
         private bool CanMallPageTemplateExecuteCommandExecute(object parameters) => true;
@@ -135,7 +160,7 @@ namespace Project.ViewModels
             {
                 MessageBox.Show(error);
             }
-            else if (MallPageTemplateSelectedMallStatus == null)
+            else if (SelectedMallStatus == null)
             {
                 MessageBox.Show("Статус не выбран");
             }
@@ -145,7 +170,7 @@ namespace Project.ViewModels
                 {
                     CurrentMall.status_id = (
                         from ms in Singleton.Instance.Context.Mall_statuses
-                        where ms.status_name == MallPageTemplateSelectedMallStatus
+                        where ms.status_name == SelectedMallStatus
                         select ms.status_id
                     ).FirstOrDefault();
                     CurrentMall.mall_name = CurrentMall.mall_name.Trim();
@@ -165,12 +190,17 @@ namespace Project.ViewModels
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show(e.Message);
+                    MessageBox.Show($"{e}");
                 }
-                ViewingMallsViewModel.Instanse.SelectedItemMallStatusesSorting = ViewingMallsViewModel.AllNameSorting;
-                ViewingMallsViewModel.Instanse.SelectedItemCitySorting = ViewingMallsViewModel.AllNameSorting;
+                ViewingMallsViewModel.Instanse.SelectedItemMallStatusesSorting = AllNameSorting;
+                ViewingMallsViewModel.Instanse.SelectedItemCitySorting = AllNameSorting;
                 ViewingMallsViewModel.Instanse.UpdateViewModel();
             }
+        }
+
+        public override void UpdateViewModel()
+        {
+            UpdateMallStatuses();
         }
         #endregion
 
@@ -184,6 +214,7 @@ namespace Project.ViewModels
             BackCommand = new LambdaCommand(OnBackCommandExecuted, CanBackCommandExecute);
             MallPageTemplateExecuteCommand = new LambdaCommand(OnMallPageTemplateExecuteCommandExecuted, CanMallPageTemplateExecuteCommandExecute);
             LoadMallPhotoCommand = new LambdaCommand(OnLoadMallPhotoCommandExecuted, CanLoadMallPhotoCommandExecute);
+            UpdateViewModel();
         }
         #endregion
     }
