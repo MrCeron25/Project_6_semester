@@ -289,10 +289,16 @@ namespace Project.ViewModels
         public ICommand RentPavilionCommand { get; }
         private void OnRentPavilionExecuted(object parameters)
         {
+            Console.WriteLine(PavilionRentalViewModel.Instanse.SelectedPavilion);
+
             Console.WriteLine("RentPavilionCommand");
             PavilionItem pavilion = parameters as PavilionItem;
-            Console.WriteLine(pavilion);
-
+            if (pavilion != null)
+            {
+                Console.WriteLine(pavilion);
+                PavilionRentalViewModel.Instanse.SelectedPavilion = pavilion;
+                Singleton.Instance.Navigate(new PavilionRental());
+            }
         }
         private bool CanRentPavilionExecute(object parameters) => true;
         #endregion

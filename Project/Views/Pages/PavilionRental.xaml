@@ -2,13 +2,143 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Project.Views.Pages"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:vm="clr-namespace:Project.ViewModels"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PavilionRental">
 
-    <Grid>
-        
+    <Grid Background="White"
+          DataContext="{x:Static vm:PavilionRentalViewModel.Instanse}"         
+          ShowGridLines="True"
+          HorizontalAlignment="Stretch">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <Menu Style="{StaticResource MenuTemplate}" 
+              Grid.Row="0">
+            <MenuItem Header="Меню">
+                <MenuItem Header="Отмена" Command="{Binding BackCommand}"/>
+            </MenuItem>
+        </Menu>
+
+        <Grid Grid.Row="1" ShowGridLines="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.6*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+
+            <TextBlock Style="{StaticResource AuthorTemplate}"
+                   Grid.RowSpan="9"
+                   Grid.ColumnSpan="2"
+                   Panel.ZIndex="1"/>
+
+
+            <TextBlock Text="Действие :"
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Style="{StaticResource CenteringTextBlockTemplate}"/>
+            <ComboBox ItemsSource="{Binding RentActions}"
+                  SelectedItem="{Binding SelectedRentAction}"
+                  Grid.Row="0"
+                  VerticalAlignment="Center"
+                  Grid.Column="1"
+                  Margin="10"/>
+
+
+            <TextBlock Text="Номер павильона :"
+                   Grid.Row="1"
+                   Grid.Column="0"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Style="{StaticResource CenteringTextBlockTemplate}"/>
+            <TextBlock Text="{Binding SelectedPavilion.pavilion_number}" 
+                   Margin="10"
+                   Style="{StaticResource AlternateTextBlockTemplate}"
+                   Grid.Row="1"
+                   VerticalAlignment="Center"
+                   Grid.Column="1"/>
+
+
+            <TextBlock Text="Дата начала аренды :"
+                   Grid.Row="2"
+                   Grid.Column="0"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Style="{StaticResource CenteringTextBlockTemplate}"/>
+            <DatePicker SelectedDate="{Binding RentalStartDate}"
+                    DisplayDateStart="{Binding MinimumRentalStartDate}"
+                    DisplayDateEnd="{Binding MaximumRentalStartDate}"
+                    Margin="10"
+                    Grid.Row="2"
+                    VerticalAlignment="Center"
+                    Grid.Column="1"/>
+
+
+            <TextBlock Text="Дата конца аренды :"
+                   Grid.Row="3"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Grid.Column="0"
+                   Style="{StaticResource CenteringTextBlockTemplate}"/>
+            <DatePicker SelectedDate="{Binding RentalEndDate}"
+                    DisplayDateStart="{Binding MinimumRentalEndDate}"
+                    DisplayDateEnd="{Binding MaximumRentalEndDate}"
+                    Margin="10"
+                    Grid.Row="3"
+                    VerticalAlignment="Center"
+                    Grid.Column="1"/>
+
+
+            <TextBlock Text="Арендатор :"
+                   VerticalAlignment="Center"
+                   Grid.Row="4"
+                   HorizontalAlignment="Center"
+                   Grid.Column="0"
+                   Style="{StaticResource CenteringTextBlockTemplate}"/>
+            <ComboBox ItemsSource="{Binding Tenants}"
+                  SelectedItem="{Binding SelectedTenant}"
+                  Margin="10"
+                  VerticalAlignment="Center"
+                  Grid.Row="4"
+                  Grid.Column="1"/>
+
+            <TextBlock Text="Сотрудник :"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Grid.Row="5"
+                   Grid.Column="0"
+                   Style="{StaticResource CenteringTextBlockTemplate}"/>
+            <ComboBox ItemsSource="{Binding Employees}"
+                  SelectedItem="{Binding SelectedEmployee}"
+                  Margin="10"
+                  VerticalAlignment="Center"
+                  Grid.Row="5"
+                  Grid.Column="1"/>
+
+
+            <Button Content="{Binding PavilionRentalButtonName}"
+                Style="{StaticResource ButtonTemplate}"
+                Command="{Binding PavilionRentalCommand}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                Grid.Row="6"
+                Grid.ColumnSpan="2"/>
+        </Grid>
     </Grid>
 </Page>

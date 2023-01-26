@@ -1,8 +1,6 @@
-﻿using Project.Models.Interfaces;
-
-namespace Project.ViewModels.Base
+﻿namespace Project.ViewModels.Base
 {
-    internal abstract class UpdatableViewModel : ViewModel, IUpdate
+    internal abstract class UpdatableViewModel : ViewModel
     {
         public abstract void UpdateViewModel();
     }

@@ -45,7 +45,6 @@ namespace Project.Models
         }
 
         private Employees _loginedEmployee { get; set; }
-
         public Employees LoginedEmployee
         {
             get => _loginedEmployee;
