@@ -157,7 +157,9 @@ namespace Project.ViewModels
                     CurrentEmployee.patronymic = CurrentEmployee.patronymic.Trim();
                     CurrentEmployee.login = CurrentEmployee.login.Trim();
                     CurrentEmployee.password = CurrentEmployee.password.Trim();
-                    CurrentEmployee.phone = CurrentEmployee.phone.Trim();
+                    long out_;
+                    long.TryParse(CurrentEmployee.phone.Trim(), out out_);
+                    CurrentEmployee.phone = string.Format("{0:+# (###) ###-##-##}", out_);
                     CurrentEmployee.sex = SelectedEmployeeSex;
                     CurrentEmployee.role = (
                         from em in Singleton.Instance.Context.Employees_roles
