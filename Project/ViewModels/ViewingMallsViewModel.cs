@@ -270,6 +270,12 @@ namespace Project.ViewModels
         }
         #endregion
 
+        #region GoToEmployeeCommand
+        public ICommand GoToEmployeeCommand { get; }
+        private void OnGoToEmployeeCommandExecuted(object parameters) => Singleton.Instance.Navigate(new ViewingEmployeePage());
+        private bool CanGoToEmployeeCommandExecute(object parameters) => true;
+        #endregion
+
         #region Instanse
         public static ViewingMallsViewModel Instanse { get; } = new ViewingMallsViewModel();
         #endregion
@@ -282,6 +288,7 @@ namespace Project.ViewModels
             _deleteCommand = new LambdaCommand(OnDeleteExecuted, CanDeleteExecute);
             _updateViewModelCommand = new LambdaCommand(OnUpdateViewModelCommandExecuted, CanUpdateViewModelCommandExecute);
 
+            GoToEmployeeCommand = new LambdaCommand(OnGoToEmployeeCommandExecuted, CanGoToEmployeeCommandExecute);
             ViewingPavilionsCommand = new LambdaCommand(OnViewingPavilionsExecuted, CanViewingPavilionsExecute);
 
             UpdateViewModel();

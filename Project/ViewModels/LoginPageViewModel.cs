@@ -106,30 +106,33 @@ namespace Project.ViewModels
 
         private bool EntryClick(string Password)
         {
-            bool result = false;
-            List<Employees> Employees = (from em in Singleton.Instance.Context.Employees
-                                         where em.login.ToLower() == LoginText.ToLower() &&
-                                               em.password == Password
-                                         select em).ToList();
-            if (Employees.Count == 0)
+            using (practiceEntities cnt = new practiceEntities())
             {
-                MessageBox.Show("Пользователь не найден.");
-                Count++;
+                bool result = false;
+                List<Employees> Employees = (from em in cnt.Employees
+                                             where em.login.ToLower() == LoginText.ToLower() &&
+                                                   em.password == Password
+                                             select em).ToList();
+                if (Employees.Count == 0)
+                {
+                    MessageBox.Show("Пользователь не найден.");
+                    Count++;
+                }
+                else
+                {
+                    result = true;
+                    Employees employee = Employees[0];
+                    Singleton.Instance.LoginedEmployee = employee;
+                    Singleton.Instance.LoadEmployeePage();
+                }
+                if (Count == 3)
+                {
+                    CaptchaImageVisibility = Visibility.Visible;
+                    CaptchaTextBoxVisibility = Visibility.Visible;
+                    UpdateCaptchaTextBlockVisibility = Visibility.Visible;
+                }
+                return result;
             }
-            else
-            {
-                result = true;
-                Employees employee = Employees[0];
-                Singleton.Instance.LoginedEmployee = employee;
-                Singleton.Instance.LoadEmployeePage();
-            }
-            if (Count == 3)
-            {
-                CaptchaImageVisibility = Visibility.Visible;
-                CaptchaTextBoxVisibility = Visibility.Visible;
-                UpdateCaptchaTextBlockVisibility = Visibility.Visible;
-            }
-            return result;
         }
 
         private void UpdateImage(int Width = 250, int Height = 60)

@@ -1,0 +1,197 @@
+﻿<Page x:Class="Project.Views.Pages.EmployeePageTemplate"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:cmd="clr-namespace:Project.Infrastructure.Commands"
+      xmlns:vm="clr-namespace:Project.ViewModels"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="EmployeePageTemplate">
+
+    <Grid Background="White"
+          DataContext="{x:Static vm:EmployeePageTemplateViewModel.Instanse}"
+          HorizontalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <Menu Style="{StaticResource MenuTemplate}" 
+              Grid.Row="0">
+            <MenuItem Header="Меню">
+                <MenuItem Header="Отмена" Command="{Binding BackCommand}"/>
+                <Separator />
+                <MenuItem Header="Выйти">
+                    <MenuItem.Command>
+                        <cmd:GoToLoginCommand/>
+                    </MenuItem.Command>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Фамилия : "
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Style="{StaticResource CenteringTextBlockTemplate}"/>
+            <TextBox Text="{Binding CurrentEmployee.surname}"
+                 Grid.Row="0"
+                 VerticalAlignment="Center"
+                 Grid.Column="1"
+                     TextAlignment="Left"
+                     Style="{StaticResource CenteringTextBoxTemplate}"
+                 Margin="10"/>
+
+
+            <TextBlock Text="Имя : "
+                   Grid.Row="1"
+                   Grid.Column="0"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Style="{StaticResource CenteringTextBlockTemplate}"/>
+            <TextBox Text="{Binding CurrentEmployee.name}" 
+                 Margin="10"
+                                      TextAlignment="Left"
+                     Style="{StaticResource CenteringTextBoxTemplate}"
+                 Grid.Row="1"
+                 VerticalAlignment="Center"
+                 Grid.Column="1"/>
+
+
+            <TextBlock Text="Отчество : "
+                   Grid.Row="2"
+                   Grid.Column="0"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Style="{StaticResource CenteringTextBlockTemplate}"/>
+            <TextBox Text="{Binding CurrentEmployee.patronymic}" 
+                 Margin="10"
+                                      TextAlignment="Left"
+                     Style="{StaticResource CenteringTextBoxTemplate}"
+                 Grid.Row="2"
+                 VerticalAlignment="Center"
+                 Grid.Column="1"/>
+
+
+            <TextBlock Text="Логин : "
+                   Grid.Row="3"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Grid.Column="0"
+                   Style="{StaticResource CenteringTextBlockTemplate}"/>
+            <TextBox Margin="10"
+                                          TextAlignment="Left"
+                     Style="{StaticResource CenteringTextBoxTemplate}"
+                 Text="{Binding CurrentEmployee.login}"
+                 Grid.Row="3"
+                 VerticalAlignment="Center"
+                 Grid.Column="1"/>
+
+
+            <TextBlock Text="Пароль : "
+                   VerticalAlignment="Center"
+                       Grid.Row="4"
+                   HorizontalAlignment="Center"
+                   Grid.Column="0"
+                   Style="{StaticResource CenteringTextBlockTemplate}"/>
+            <TextBox Text="{Binding CurrentEmployee.password}" 
+                 Margin="10"
+                 VerticalAlignment="Center"
+                                          TextAlignment="Left"
+                     Style="{StaticResource CenteringTextBoxTemplate}"
+                 Grid.Row="4"
+                 Grid.Column="1"/>
+
+            <TextBlock Text="Пол : "
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Grid.Row="5"
+                   Grid.Column="0"
+                   Style="{StaticResource CenteringTextBlockTemplate}"/>
+            <ComboBox ItemsSource="{Binding EmployeeSex}"
+                  SelectedItem="{Binding SelectedEmployeeSex}"
+                 Margin="10"
+                 VerticalAlignment="Center"
+                 Grid.Row="5"
+                 Grid.Column="1"/>
+
+
+            <TextBlock Text="Роль : "
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Grid.Row="6"
+                   Grid.Column="0"
+                   Style="{StaticResource CenteringTextBlockTemplate}"/>
+            <ComboBox ItemsSource="{Binding EmployeeRoles}"
+                  SelectedItem="{Binding SelectedEmployeeRoles}"
+                 Margin="10"
+                 VerticalAlignment="Center"
+                 Grid.Row="6"
+                 Grid.Column="1"/>
+
+            <TextBlock Text="Номер телефона : "
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Grid.Row="7"
+                   Grid.Column="0"
+                   Style="{StaticResource CenteringTextBlockTemplate}"/>
+            <TextBox Text="{Binding CurrentEmployee.phone}" 
+                 Margin="10"
+                 VerticalAlignment="Center"
+                                          TextAlignment="Left"
+                     Style="{StaticResource CenteringTextBoxTemplate}"
+                 Grid.Row="7"
+                 Grid.Column="1"/>
+
+            <TextBlock Text="Фото : "
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Grid.Row="8"
+                   Grid.Column="0"
+                   Style="{StaticResource CenteringTextBlockTemplate}"/>
+            <Button Content="Загрузить"
+                    Command="{Binding LoadPhotoCommand}"
+                    Grid.Row="8"
+                    Grid.Column="1"
+                    VerticalAlignment="Center"
+                    Style="{StaticResource ButtonTemplate}"
+                    HorizontalAlignment="Left"/>
+            <Image Width="80"
+                Height="80"
+                Stretch="Uniform"
+                HorizontalAlignment="Right"
+                Grid.RowSpan="8"
+                Grid.Row="8"
+                Grid.Column="1"
+                Source="{Binding LoadedImage}"/>
+
+            <Button Content="{Binding EmployeePageTemplateButtonName}"
+                Style="{StaticResource ButtonTemplate}"
+                Command="{Binding ExecuteCommand}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                Grid.Row="9"
+                Grid.ColumnSpan="2"/>
+        </Grid>
+    </Grid>
+</Page>

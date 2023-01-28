@@ -154,6 +154,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Views\Pages\EmployeePageTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Pages\LoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -167,6 +171,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\PavilionRental.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\ViewingEmployeePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -186,6 +194,7 @@
     <Compile Include="Infrastructure\Commands\CloseApplicationCommand.cs" />
     <Compile Include="Infrastructure\Commands\GoToLoginCommand.cs" />
     <Compile Include="Infrastructure\Commands\LambdaCommand.cs" />
+    <Compile Include="Models\EmployeeItem.cs" />
     <Compile Include="Models\Employees.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -196,6 +205,13 @@
     <Compile Include="Models\PavilionItem.cs" />
     <Compile Include="Models\Validators\Base\BaseErrorValidator.cs" />
     <Compile Include="Models\Validators\Base\BaseValidator.cs" />
+    <Compile Include="Models\Validators\EmployeeValidators\EmployeeValidator.cs" />
+    <Compile Include="Models\Validators\EmployeeValidators\EmployeePhoneValidator.cs" />
+    <Compile Include="Models\Validators\EmployeeValidators\EmployeePasswordValidator.cs" />
+    <Compile Include="Models\Validators\EmployeeValidators\EmployeePatronymicValidator.cs" />
+    <Compile Include="Models\Validators\EmployeeValidators\EmployeeNameValidator.cs" />
+    <Compile Include="Models\Validators\EmployeeValidators\EmployeeLoginValidator.cs" />
+    <Compile Include="Models\Validators\EmployeeValidators\EmployeeSurnameValidator.cs" />
     <Compile Include="Models\Validators\MallValidators\MallCityValidator.cs" />
     <Compile Include="Models\Validators\MallValidators\MallCostValidator.cs" />
     <Compile Include="Models\Validators\MallValidators\MallNameValidator.cs" />
@@ -258,14 +274,19 @@
     <Compile Include="Models\Tools.cs" />
     <Compile Include="ViewModels\Base\UpdatableViewModel.cs" />
     <Compile Include="ViewModels\Base\ViewModel.cs" />
+    <Compile Include="ViewModels\EmployeePageTemplateViewModel.cs" />
     <Compile Include="ViewModels\LoginPageViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\MallPageTemplateViewModel.cs" />
     <Compile Include="ViewModels\ManagerCViewModel.cs" />
     <Compile Include="ViewModels\PavilionPageTemplateViewModel.cs" />
     <Compile Include="ViewModels\PavilionRentalViewModel.cs" />
+    <Compile Include="ViewModels\ViewingEmployeeViewModel.cs" />
     <Compile Include="ViewModels\ViewingMallsViewModel.cs" />
     <Compile Include="ViewModels\ViewingPavilionsViewModel.cs" />
+    <Compile Include="Views\Pages\EmployeePageTemplate.xaml.cs">
+      <DependentUpon>EmployeePageTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
@@ -277,6 +298,9 @@
     </Compile>
     <Compile Include="Views\Pages\PavilionRental.xaml.cs">
       <DependentUpon>PavilionRental.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\ViewingEmployeePage.xaml.cs">
+      <DependentUpon>ViewingEmployeePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\ViewingPavilionsPage.xaml.cs">
       <DependentUpon>ViewingPavilionsPage.xaml</DependentUpon>

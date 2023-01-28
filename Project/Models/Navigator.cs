@@ -58,20 +58,19 @@ namespace Project.Models
                 MessageBox.Show($"LoginedEmployee не существует.");
                 return;
             }
-            Navigate(new ViewingMallsPage());
-            //switch (_employees.role)
-            //{
-            //    //case 1:
-            //    //    break;
-            //    //case 1:
-            //    //    break;
-            //    //case 1:
-            //    //    break;
-            //    //case 1:
-            //    //    break;
-            //    default:
-            //        break;
-            //}
+            switch (_loginedEmployee.role)
+            {
+                case 1: // Администратор
+                    break;
+                case 2: // Менеджер А
+                    break;
+                case 3: // Менеджер С
+                    Navigate(new ViewingMallsPage());
+                    break;
+                default:
+                    MessageBox.Show($"Данный пользователь не может войти в систему.");
+                    break;
+            }
         }
     }
 }
